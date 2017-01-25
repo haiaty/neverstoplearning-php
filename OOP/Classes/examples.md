@@ -2,46 +2,58 @@
 
 ### simple class definition
 
-    class Car {
+```php
+<?php
 
-    }
+class Car {
+
+}
+
+```
 
 ### class definition with properties
 
+```php
+<?php
 
-    class Car {
+class Car {
 
-      /*
-      * @var string licensePlate
-      */
-      public $licensePlate;
+    /*
+    * @var string licensePlate
+    */
+    public $licensePlate;
 
-      /*
-      * @var int $numberOfWheels
-      */
-      private $numberOfWheels;
+    /*
+    * @var int $numberOfWheels
+    */
+    private $numberOfWheels;
 
-      /*
-      * @var string $color
-      */
-      protected $color = 'blue';
+    /*
+    * @var string $color
+    */
 
+    protected $color = 'blue';
 
-    }
+}
 
+```
 ### class definition with methods
 
+```php
+<?php
 
-        class Car {
+ class Car {
 
-          public $wheels;
+    public $wheels;
 
-          /*
-          * Starts the car 
-          */
-          public function startEngine()
-          {
-            //
-          }
+    /*
+    * Starts the car 
+    */
+    public function startEngine()
+    {
+        //
+    }
 
-        }
+}
+
+```
