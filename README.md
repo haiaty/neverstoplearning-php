@@ -16,7 +16,7 @@ A collection of resources for learning PHP that i've used or have found
 * Generators
 * Libraries
 * Microservices
-* Miscellaneous
+* [Miscellaneous](Miscellaneous/resources.md)
 * Namespaces
 * Nginx
 * OOP
