@@ -1,8 +1,8 @@
 # Never stop learning PHP :books:
 A collection of resources for learning PHP that i've used or have found 
 
-* [OOP](OOP/)
-  * [Classes](OOP/Classes)
+* [OOP](Learn/OOP/)
+  * [Classes](Learn/OOP/Classes)
 * Appserverio
 * Arrays
 * Books
@@ -16,7 +16,7 @@ A collection of resources for learning PHP that i've used or have found
 * Generators
 * Libraries
 * Microservices
-* [Miscellaneous](Miscellaneous/resources.md)
+* [Miscellaneous](Learn/Miscellaneous/resources.md)
 * Namespaces
 * Nginx
 * OOP
