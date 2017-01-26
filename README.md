@@ -36,3 +36,5 @@ PHP, which stands for "PHP: Hypertext Preprocessor" is a widely-used Open Source
 * Traits
 * [Variables](Learn/Variables/)
 * Xdebug
+* History
+* Types - Null
