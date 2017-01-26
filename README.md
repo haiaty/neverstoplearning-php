@@ -34,5 +34,5 @@ PHP, which stands for "PHP: Hypertext Preprocessor" is a widely-used Open Source
 * Tips
 * Tools
 * Traits
-* Variables
+* [Variables](Learn/Variables/)
 * Xdebug
