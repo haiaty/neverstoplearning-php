@@ -5,6 +5,8 @@ PHP, which stands for "PHP: Hypertext Preprocessor" is a widely-used Open Source
 
 * [OOP](Learn/OOP/)
   * [Classes](Learn/OOP/Classes)
+  * Objects
+  * Inheritance
 * Appserverio
 * Arrays
 * Books
