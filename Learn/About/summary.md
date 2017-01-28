@@ -1,6 +1,9 @@
 # What is PHP
 
-PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used open source general-purpose scripting language. PHP is a very popular scripting language for web development. 
+PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used open source general-purpose scripting language. PHP is a very popular scripting language for web development
+
+It is a powerful language because with it you can use different programming paradigms such as OOP, procedural, functional. It has a robust support for OOP (has interfaces, abstract classes, etc..) and has several powerful features like traits, closures, generators.
+It seems that it combines differents features found in languages like Java, Javascript, C, python but are more versatil and lightweight without the verbosity of some of those languages.
 
 The best things in using PHP are that it is extremely simple for a newcomer, but offers many advanced features for a professional programmer. Although PHP's development is focused on server-side scripting, you can do much more with it.
 
@@ -47,6 +50,7 @@ PHP has useful text processing features, which includes the Perl compatible regu
 
 ### sources
 
+* Haiaty Varotto
 * [php.net](php.net)
 * [https://en.wikipedia.org/wiki/PHP](https://en.wikipedia.org/wiki/PHP)
 * [https://www.a2hosting.com/kb/developer-corner/php/what-is-php](https://www.a2hosting.com/kb/developer-corner/php/what-is-php)
