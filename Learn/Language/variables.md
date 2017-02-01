@@ -5,11 +5,13 @@
 
 # Variables
 
+---
+
 ### :bulb: **How to**
  
  In PHP, a variable starts with the $ sign, followed by the name of the variable.
  
- ----
+--
 
 ### :bulb: **rules for variables**
  
@@ -23,22 +25,24 @@ Rules for PHP variables:
  
 As a regular expression, it would be expressed thus: '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*'
  
-----
+--
  
 ### :bulb: **By default variables are always assigned by value**
  
 By default, variables are always assigned by value. That is to say, when you assign an expression to a variable, the entire value of the original expression is copied into the destination variable. This means, for instance, that after assigning one variable's value to another, changing one of those variables will have no effect on the other.
  
----- 
+-- 
  
 ### :bulb: **you can also assign by reference**
  
 PHP also offers another way to assign values to variables: assign by reference. This means that the new variable simply references (in other words, "becomes an alias for" or "points to") the original variable. Changes to the new variable affect the original, and vice versa.
 To assign by reference, simply prepend an ampersand (&) to the beginning of the variable which is being assigned (the source variable). 
 
-----
+
 
 # Examples
+
+---
 
 Some variables definitions
  
@@ -54,7 +58,7 @@ Some variables definitions
  
  ```
  
- ----
+ --
  
  Values assignment by reference
  
@@ -66,7 +70,7 @@ Some variables definitions
  
  ```
  
- ----
+ --
  
   Name of a variable generated from the value of another variables.
   
@@ -83,9 +87,11 @@ Some variables definitions
  ```
 
 
----
+
 
 # Resources
+
+---
 
 * [Variables from PHP.Net ](http://php.net/manual/en/language.variables.php)
 * [Variables from W3School](http://www.w3schools.com/php/php_variables.asp)
