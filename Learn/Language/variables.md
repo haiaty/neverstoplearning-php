@@ -65,6 +65,22 @@ Some variables definitions
  $bar = &$foo;   //now $bar has a reference to $foo. If the value of $foo changes, $bar will have the new value
  
  ```
+ 
+ ----
+ 
+  Name of a variable generated from the value of another variables.
+  
+  (Note that this will work only if the value is a string).
+ 
+ ```php
+ 
+ $foo = 'Bob';              // Assign the value 'Bob' to $foo
+ 
+ $$foo = 'Hello'; //we we have created a variable $Bob that has the string 'Hello' as value
+ 
+ echo $Bob; // 'Hello'
+ 
+ ```
 
 
 ---
