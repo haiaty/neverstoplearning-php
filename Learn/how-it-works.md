@@ -1,6 +1,7 @@
 
 * [summary](#with-web-server)
 * [examples](#examples)
+* [how to](#how-to)
 * [resources](#resources)
 
 
@@ -11,6 +12,12 @@ The Web server will handle the request coming from client and then will pass it 
 The server should activate support for PHP and all files ending in .php should be handled by PHP. On most servers, this is the default extension for PHP files. If your server supports PHP, then you do not need to do anything. Just create your .php files, put them in your web directory and the server will automatically parse them for you. There is no need to compile anything nor do you need to install any extra tools.
 
 The server finds out that this file needs to be interpreted by PHP because you used the ".php" extension, which the server is configured to pass on to PHP. 
+
+### with Apache Web server
+
+The traditional way is to use Apache’s mod_php. Mod_php attaches PHP to Apache itself, but Apache does a very bad job of managing it. You’ll suffer from severe memory problems as soon as you get any kind of real traffic.
+Two new options soon became popular: mod_fastcgi and mod_fcgid. Both of these keep a limited number of PHP processes running, and Apache sends requests to these interfaces to handle PHP execution on its behalf. Because these libraries limit how many PHP processes are alive, memory usage is greatly reduced without affecting performance.
+Some smart people created an implementation of fastcgi that was specially designed to work really well with PHP, and they called it PHP-FPM.
 
 
 # From Cli (Command line interface)
@@ -52,6 +59,44 @@ Use your browser to access the file with your web server's URL, ending with the 
 
 ---
 
+# How to
+
+### Install and configure Apache 2 and PHP-FPM on Ubuntu 14
+
+You can install PHP-FPM and Apache on Ubuntu 14.04 by running these command in your terminal:
+
+```
+sudo apt-get install apache2-mpm-event libapache2-mod-fastcgi php5-fpm
+sudo a2enmod actions alias fastcgi
+
+```
+
+Note that we must use apache2-mpm-event (or apache2-mpm-worker), not apache2-mpm-prefork or apache2-mpm-threaded.
+
+Next, we’ll configure our Apache virtualhost to route PHP requests to the PHP-FPM process. Place the following in your Apache configuration file (in Ubuntu 14.04 the default one is /etc/apache2/sites-available/000-default.conf).
+
+```
+<Directory />
+    Require all granted
+</Directory>
+<VirtualHost *:80>
+    Action php5-fcgi /php5-fcgi
+    Alias /php5-fcgi /usr/lib/cgi-bin/php5-fcgi
+    FastCgiExternalServer /usr/lib/cgi-bin/php5-fcgi -socket /var/run/php5-fpm.sock -idle-timeout 120 -pass-header Authorization
+    <FilesMatch "\.php$">
+        SetHandler  php5-fcgi
+    </FilesMatch>
+</VirtualHost>
+```
+
+Finally, restart Apache and the FPM process:
+
+```
+sudo service apache2 restart && sudo service php5-fpm restart
+
+```
+
 # Resources
 
 * [Simple tutorial from php.net](http://php.net/manual/en/tutorial.firstpage.php)
+* [Serving PHP from Apache using PHP-FPM](https://phpbestpractices.org/#serving-php)
