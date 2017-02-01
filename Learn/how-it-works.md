@@ -19,7 +19,7 @@ The traditional way is to use Apache’s mod_php. Mod_php attaches PHP to Apache
 Two new options soon became popular: mod_fastcgi and mod_fcgid. Both of these keep a limited number of PHP processes running, and Apache sends requests to these interfaces to handle PHP execution on its behalf. Because these libraries limit how many PHP processes are alive, memory usage is greatly reduced without affecting performance.
 Some smart people created an implementation of fastcgi that was specially designed to work really well with PHP, and they called it PHP-FPM.
 
-**Apache + mod_php**: If configured with mod_php, Apache starts a new PHP instance each time it receives a request to serve a PHP script, then destroys the instance when the script is done. 
+**Apache + mod_php**: If configured with mod_php, Apache starts a new PHP instance each time it receives a request to serve a PHP script, then destroys the instance when the script is done. this setup is quite performance intensive and has some drawbacks which can be seen when the site grows in terms of users. Apache require more RAM to serve the requests whereas mod_php results in increased CPU cycles. The single user nature of PHP adds more complications because each user will have its own php process running on the webserver any time of request.
 
 **Apache + mod_fastcgi**: FastCGI is a module that allows you to neatly solve mod_php’s big problem, namely that it must spin up and destroy a PHP instance with every request. FastCGI instead keeps an instance of PHP running in the background. When Apache receives a request it forwards it to FastCGI, which feeds it to its already running instance of PHP and sends the result back to Apache. Apache then serves the result.Without the constant build-and-destroy of new PHP processes, FastCGI is a great memory saver and performance booster. 
 
@@ -108,3 +108,4 @@ sudo service apache2 restart && sudo service php5-fpm restart
 * [Simple tutorial from php.net](http://php.net/manual/en/tutorial.firstpage.php)
 * [Serving PHP from Apache using PHP-FPM](https://phpbestpractices.org/#serving-php)
 * [Installing Apache + MOD_FASTCGI + PHP-FPM on ubuntu server](https://alexcabal.com/installing-apache-mod_fastcgi-php-fpm-on-ubuntu-server-maverick/)
+* [The perrfect lamp stack](http://voidweb.com/2010/07/the-perfect-lamp-stack-apache2-fastcgi-php-fpm-apc/)
