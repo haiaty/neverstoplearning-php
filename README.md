@@ -21,7 +21,7 @@ PHP, which stands for "PHP: Hypertext Preprocessor" is a widely-used Open Source
 * Generators
 * Libraries
 * Microservices
-* [Miscellaneous](Learn/Miscellaneous/resources.md)
+* Miscellaneous
 * Namespaces
 * Nginx
 * OOP
@@ -40,4 +40,6 @@ PHP, which stands for "PHP: Hypertext Preprocessor" is a widely-used Open Source
 * [Variables](Learn/Variables/)
 * Xdebug
 * History
-* Types - Null
+* Types
+ * Null
+* Utils
