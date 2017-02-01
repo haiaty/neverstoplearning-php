@@ -19,6 +19,9 @@ The traditional way is to use Apache’s mod_php. Mod_php attaches PHP to Apache
 Two new options soon became popular: mod_fastcgi and mod_fcgid. Both of these keep a limited number of PHP processes running, and Apache sends requests to these interfaces to handle PHP execution on its behalf. Because these libraries limit how many PHP processes are alive, memory usage is greatly reduced without affecting performance.
 Some smart people created an implementation of fastcgi that was specially designed to work really well with PHP, and they called it PHP-FPM.
 
+**Apache + mod_fastcgi**: FastCGI is a module that allows you to neatly solve mod_php’s big problem, namely that it must spin up and destroy a PHP instance with every request. FastCGI instead keeps an instance of PHP running in the background. When Apache receives a request it forwards it to FastCGI, which feeds it to its already running instance of PHP and sends the result back to Apache. Apache then serves the result.Without the constant build-and-destroy of new PHP processes, FastCGI is a great memory saver and performance booster. 
+
+**Apache + mod_fcgid**:  fgcid is a binary-compatible alternative to FastCGI–that is, it does more or less the same thing, but in a different way. It seems that some people prefer mod_fcgid over mod_fastcgi because of better stability and maybe even slightly better performance. 
 
 # From Cli (Command line interface)
 
@@ -100,3 +103,4 @@ sudo service apache2 restart && sudo service php5-fpm restart
 
 * [Simple tutorial from php.net](http://php.net/manual/en/tutorial.firstpage.php)
 * [Serving PHP from Apache using PHP-FPM](https://phpbestpractices.org/#serving-php)
+* [Installing Apache + MOD_FASTCGI + PHP-FPM on ubuntu server](https://alexcabal.com/installing-apache-mod_fastcgi-php-fpm-on-ubuntu-server-maverick/)
