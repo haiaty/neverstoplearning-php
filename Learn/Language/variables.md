@@ -89,4 +89,5 @@ Some variables definitions
 
 * [Variables from PHP.Net ](http://php.net/manual/en/language.variables.php)
 * [Variables from W3School](http://www.w3schools.com/php/php_variables.asp)
+ * [Variable comparision cheat sheet] (http://phpcheatsheets.com/compare/)
 
