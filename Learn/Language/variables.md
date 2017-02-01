@@ -58,7 +58,6 @@ Some variables definitions
  
  ```
  
- --
  
  Values assignment by reference
  
@@ -70,7 +69,6 @@ Some variables definitions
  
  ```
  
- --
  
   Name of a variable generated from the value of another variables.
   
@@ -95,5 +93,5 @@ Some variables definitions
 
 * [Variables from PHP.Net ](http://php.net/manual/en/language.variables.php)
 * [Variables from W3School](http://www.w3schools.com/php/php_variables.asp)
- * [Variable comparision cheat sheet] (http://phpcheatsheets.com/compare/)
+* [Variable comparision cheat sheet] (http://phpcheatsheets.com/compare/)
 
