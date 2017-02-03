@@ -10,7 +10,7 @@
 PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used open source general-purpose scripting language. PHP is a very popular scripting language for web development
 
 It is a powerful language because with it you can use different programming paradigms such as OOP, procedural, functional. It has a robust support for OOP (has interfaces, abstract classes, etc..) and has several powerful features like traits, closures, generators.
-It seems that it combines differents features found in languages like Java, Javascript, C, python but are more versatil and lightweight without the verbosity of some of those languages.
+It seems that it combines differents features found in languages like Java, Javascript, C, python..
 
 The best things in using PHP are that it is extremely simple for a newcomer, but offers many advanced features for a professional programmer. Although PHP's development is focused on server-side scripting, you can do much more with it.
 
@@ -36,6 +36,8 @@ There are three main areas where PHP scripts are used.
 :bulb: **Server-side scripting**.
 
 This is the most traditional and main target field for PHP. You need three things to make this work: the PHP parser (CGI or server module), a web server and a web browser. You need to run the web server, with a connected PHP installation. You can access the PHP program output with a web browser, viewing the PHP page through the server.PHP code may be embedded into HTML code, or it can be used in combination with various web template systems, web content management systems and web frameworks. PHP code is usually processed by a PHP interpreter implemented as a module in the web server or as a Common Gateway Interface (CGI) executable. The web server combines the results of the interpreted and executed PHP code, which may be any type of data, including images, with the generated web page.
+
+In terms of server-side programming languages, it is by far the most widely used, powering more than 80% of today’s websites
 
 :bulb: **Command line scripting**.
 
