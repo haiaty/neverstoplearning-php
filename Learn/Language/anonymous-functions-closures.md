@@ -201,8 +201,8 @@ $example();  //prints 'changed from parent Scope!'
 
  ```
  
- 
- # Resources
+
+# Resources
  
  * [Anonymous functions from PHP.net ](http://it2.php.net/manual/en/functions.anonymous.php)
  * [Closures from PHP.net ](http://www.php.net//manual/en/class.closure.php)
