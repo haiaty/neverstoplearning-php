@@ -14,9 +14,9 @@ A closure encapsulates its scope, meaning that it has no access to the scope in 
 
  The parent scope of a closure is the function in which the closure was declared (not necessarily the function it was called from). 
 
-It is, however, possible to inherit variables from the parent scope (where the closure is defined) into the closure with the use keyword. Inherited variable's value is from when the function is defined, not when called. This inherits the variables by-value, that is, a copy is made available inside the closure using its original name. If you want you can inherit it by-reference, but remenber that if you inherit it from reference then if the parent scope changes its value, that change will be reflected in the closure. From PHP 7.1, these variables may not include superglobals, $this, or variables with the same name as a parameter.
+It is, however, possible to inherit variables from the parent scope (where the closure is defined) into the closure with the use keyword ([Example](#example-4)). Inherited variable's value is from when the function is defined, not when called ([Example](#example-6)). This inherits the variables by-value, that is, a copy is made available inside the closure using its original name. If you want you can inherit it by-reference ([Example](#example-7)), but remenber that if you inherit it from reference then if the parent scope changes its value, that change will be reflected in the closure ([Example](#example-8)). From PHP 7.1, these variables may not include superglobals, $this, or variables with the same name as a parameter.
 
-You can use a closures in itself via reference.
+You can use a closures in itself via reference ([Example](#example-5)).
 
 Closures become useful when some piece of logic needs to be performed in a limited scope but retain the ability to interact with the environment external to that scope. 
 
