@@ -1,6 +1,10 @@
 
+* [knowledge Aggregation](#anonymous-functions-closures)
+* [Examples](#examples)
+* [Resources](#Resources)
 
 
+# Anonymous functions/closures
 
 Anonymous functions, also known as closures, allow the creation of functions which have no specified name. They are most useful as the value of callback parameters ([Example](#example-2)), but they have many other uses.
 
@@ -24,6 +28,7 @@ As of PHP 5.4.0, when declared in the context of a class, the current class is a
 
 Closures have additional object oriented uses as well. PHP 5.4 brings new methods to the Closure class’ interface. Specifically, the new bind and bindTo methods can be used to bind to new objects for the closure to operate on
 
+---
 
 # Examples
 
@@ -156,8 +161,8 @@ $example();
  
  ```
  
- #### Example 7
- #### Inheriting variable from parent scope by reference
+#### Example 7
+#### Inheriting variable from parent scope by reference
  
  
  ```php
@@ -175,8 +180,8 @@ $example();
  
  ```
  
- #### Example 8
- #### Inheriting variable from parent scope by reference and changes on parent scope is reflecte on closure
+#### Example 8
+#### Inheriting variable from parent scope by reference and changes on parent scope is reflecte on closure
  
  
  ```php
@@ -193,6 +198,15 @@ $example();  //prints 'hello'
 $message = 'changed from parent Scope!';
 
 $example();  //prints 'changed from parent Scope!'
+
+ ```
+ 
+ 
+ # Resources
+ 
+ * [Anonymous functions from PHP.net ](http://it2.php.net/manual/en/functions.anonymous.php)
+ * [Closures from PHP.net ](http://www.php.net//manual/en/class.closure.php)
+ * [Question about closures from an article on toptal.com](https://www.toptal.com/php)
  
 
  
