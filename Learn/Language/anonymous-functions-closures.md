@@ -1,5 +1,5 @@
 
-* [knowledge Aggregation](#anonymous-functions-closures)
+* [knowledge Aggregation](#anonymous-functionsclosures)
 * [Examples](#examples)
 * [Resources](#Resources)
 
