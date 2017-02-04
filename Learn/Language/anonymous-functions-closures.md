@@ -1,7 +1,7 @@
 
 * [knowledge Aggregation](#anonymous-functionsclosures)
 * [Examples](#examples)
-* [Resources](#Resources)
+* [Resources](#resources)
 
 
 # Anonymous functions/closures
