@@ -6,11 +6,9 @@
 
 # Anonymous functions/closures
 
-Anonymous functions, also known as closures, allow the creation of functions which have no specified name. They are most useful as the value of callback parameters ([Example](#example-2)), but they have many other uses.
+Anonymous functions, also known as closures, allow the creation of functions which have no specified name. Because the function has no name, you can’t call it like a regular function. Instead you must either assign it to a variable ([Example](#example-3)) (PHP automatically converts such expressions into instances of the Closure internal class) or pass it to another function as an argument ([Example](#example-2)). 
 
 Anonymous functions are implemented using the [Closure class](http://www.php.net//manual/en/class.closure.php).
-
-Closures can also be used as the values of variables; PHP automatically converts such expressions into instances of the Closure internal class.  ([Example](#example-3))
 
 Closures can also accept regular arguments ([Example](#example-1)).
 
