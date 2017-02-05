@@ -20,6 +20,8 @@ It is, however, possible to inherit variables from the parent scope (where the c
 
 You can use a closures in itself via reference ([Example](#example-5)).
 
+You can return a Closure from a function call ([Example](#example-10)). 
+
 Closures become useful when some piece of logic needs to be performed in a limited scope but retain the ability to interact with the environment external to that scope. They can be used as throw away bits of functionality that don’t pollute the global namespace and are good to use as part of a callback. they are useful for one offs or where it doesn’t make sense to define a function. They are also useful when using PHP functions that accept a callback function like array_map, array_filter, array_reduce or array_walk.
 
 Closures were introduced in PHP 5.3. As of PHP 5.4.0, when declared in the context of a class, the current class is automatically bound to it, making $this available inside of the function's scope ([Example](#example-9)). If this automatic binding of the current class is not wanted, then static anonymous functions may be used instead.
@@ -231,12 +233,34 @@ $func(); //outputs 'Red'
 
  ```
  
+#### Example 10 
+#### closure returned from function call
+ 
+ 
+ ```php
+<?php
+
+function say($message): callable {
+   return function ($target) use ($message) {		
+      echo "{$message} {$target}";
+      };
+}
+
+$a = say('Hi');
+
+$a('World'); //outputs 'Hi World';
+
+ ```
+ 
+ 
 
 # Resources
  
  * [Anonymous functions from PHP.net ](http://it2.php.net/manual/en/functions.anonymous.php)
  * [Closures from PHP.net ](http://www.php.net//manual/en/class.closure.php)
  * [Question about closures from an article on toptal.com](https://www.toptal.com/php)
+ * [What are PHP Lambdas and Closures?] (http://culttt.com/2013/03/25/what-are-php-lambdas-and-closures/)
+ * [Functional PHP] (https://leanpub.com/functional-php/read)
  
 
  
