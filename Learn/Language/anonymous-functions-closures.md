@@ -24,7 +24,9 @@ You can **return a Closure from a function call** ([Example](#example-10)).
 
 Closures become useful when some piece of logic needs to be performed in a limited scope but retain the ability to interact with the environment external to that scope. They can be used as throw away bits of functionality that don’t pollute the global namespace and are good to use as part of a callback. they are useful for one offs or where it doesn’t make sense to define a function. They are also useful when using PHP functions that accept a callback function like array_map, array_filter, array_reduce or array_walk.
 
-Closures were introduced in PHP 5.3. As of PHP 5.4.0, when declared in the context of a class, **the current class is automatically bound to it, making $this available inside of the function's scope** ([Example](#example-9)). If this automatic binding of the current class is not wanted, then static anonymous functions may be used instead.
+As of PHP7, you can **immediately execute anonymous functions** ([Example](#example-13)). 
+
+Closures were introduced in PHP 5.3. As of PHP 5.4.0, when declared in the context of a class, **the current class is automatically bound to it, making $this available inside of the function's scope** ([Example](#example-9)). If this automatic binding of the current class is not wanted, then static anonymous functions may be used instead. As of PHP 5.4, anonymous functions may be declared statically ([Example](#example-11)). **This prevents them from having the current class automatically bound to them**. Objects may also **not be bound to them at runtime** ([Example](#example-14)).
 
 Closures have additional object oriented uses as well. PHP 5.4 brings new methods to the Closure class’ interface. Specifically, the new bind and bindTo methods can be used to bind to new objects for the closure to operate on
 
@@ -251,6 +253,73 @@ $a = say('Hi');
 $a('World'); //outputs 'Hi World';
 
  ```
+ 
+ 
+#### Example 11 
+#### static closure declaration
+ 
+ 
+ ```php
+<?php
+
+$b = static function() { var_dump($this); };
+
+$b() //get an notice and Null
+
+$d = $b->bindTo(new StdClass());
+$d(); //get a warning, a notice and null because you canot bind an static closure to an object
+
+ ```
+
+#### Example 12 
+#### Attempting to use $this inside a static anonymous functionstatic closure declaration
+ 
+ 
+ ```php
+<?php
+
+new class {
+    function __construct()
+    {
+        (static function() {
+            var_dump($this);
+        })();
+    }
+};
+
+//will output
+//Notice: Undefined variable: this in %s on line %d
+//NULL
+
+ ```
+ 
+#### Example 13 
+#### Immediatily invoking an anonimous function
+ 
+ 
+ ```php
+<?php
+
+(function() { echo 123; })(); // will print 123
+
+ ```
+
+#### Example 14 
+#### Attempting to bind an object to a static anonymous function
+ 
+ 
+ ```php
+<?php
+
+$b = static function() { var_dump($this); };
+
+$d = $b->bindTo(new StdClass());
+
+$d(); //get a warning, a notice and null because you canot bind an static closure to an object
+
+ ```
+
+
  
  
 
