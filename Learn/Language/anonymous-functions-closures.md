@@ -22,13 +22,19 @@ You can use a closures in itself **via reference** ([Example](#example-5)).
 
 You can **return a Closure from a function call** ([Example](#example-10)). 
 
+You can **put a closure as a value of an associative array** and call it using array syntax followed by parenthesis ([Example](#example-16)).
+
 Closures become useful when some piece of logic needs to be performed in a limited scope but retain the ability to interact with the environment external to that scope. They can be used as throw away bits of functionality that don’t pollute the global namespace and are good to use as part of a callback. they are useful for one offs or where it doesn’t make sense to define a function. They are also useful when using PHP functions that accept a callback function like array_map, array_filter, array_reduce or array_walk.
 
 As of PHP7, you can **immediately execute anonymous functions** ([Example](#example-13)). 
 
 Closures were introduced in PHP 5.3. As of PHP 5.4.0, when declared in the context of a class, **the current class is automatically bound to it, making $this available inside of the function's scope** ([Example](#example-9)). If this automatic binding of the current class is not wanted, then static anonymous functions may be used instead. As of PHP 5.4, anonymous functions may be declared statically ([Example](#example-11)). **This prevents them from having the current class automatically bound to them**. Objects may also **not be bound to them at runtime** ([Example](#example-14)).
 
-Closures have additional object oriented uses as well. PHP 5.4 brings new methods to the Closure class’ interface. Specifically, the new bind and bindTo methods can be used to bind to new objects for the closure to operate on
+If you try to call a closure **stored in an instance variable** as you would regularly do with methods, it will **give you an error** because php tries to match the instance method called with the name of the instance variable wich is not defined in the original class' signature ([Example](#example-15)).
+
+Closures have additional object oriented uses as well. PHP 5.4 brings new methods to the Closure class’ interface. Specifically, the new bind and bindTo methods can be used to bind to new objects for the closure to operate on.
+
+ It is possible to use these functions func_num_args(), func_get_arg(), and func_get_args() from within a closure.
 
 ---
 
@@ -316,6 +322,46 @@ $b = static function() { var_dump($this); };
 $d = $b->bindTo(new StdClass());
 
 $d(); //get a warning, a notice and null because you canot bind an static closure to an object
+
+ ```
+ 
+ 
+#### Example 15
+#### Trying to call a closure stored in a instance variable
+ 
+ 
+ ```php
+<?php
+
+$obj = new StdClass();
+
+$obj->func = function(){
+echo "hello";
+};
+
+//$obj->func(); // doesn't work! php tries to match an instance method called "func" that is not defined in the original class' signature
+
+// you have to do this instead:
+$func = $obj->func;
+$func();
+
+// or:
+call_user_func($obj->func);
+
+ ```
+ 
+#### Example 16
+#### closure as a value of an associative array
+ 
+ 
+ ```php
+<?php
+
+$array['func'] = function(){
+echo "hello";
+};
+
+$array['func'](); // hello
 
  ```
 
