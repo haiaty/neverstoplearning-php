@@ -35,6 +35,8 @@ If you try to call a closure **stored in an instance variable** as you would reg
 Closures have additional object oriented uses as well. PHP 5.4 brings new methods to the Closure class’ interface. Specifically, the new bind and bindTo methods can be used to bind to new objects for the closure to operate on. Furthemore since the Closure class has the __invoke method, they can be type hinted as Callables ([Example](#example-17)).
 
  It is possible to use these functions func_num_args(), func_get_arg(), and func_get_args() from within a closure.
+ 
+ You cannot access an array element inside the use() statement because it will give you an error  ([Example](#example-18)).
 
 ---
 
@@ -383,6 +385,40 @@ $a['crazy_func'] = function (): Callable {
 
 echo $a['crazy_func']()('Hi')('Haiaty'); //outputs 'Hi Haiaty from Crazy func!'
 echo $a['crazy_func']()('Hello')('Jhon'); //outputs 'Hello Jhon from Crazy func!'
+
+ ```
+ 
+#### Example 18
+#### trying to acces array element inside use keyword
+ 
+ 
+ ```php
+<?php
+
+$fruits = ['apples', 'oranges'];
+$example = function () use ($fruits[0]) {
+    echo $fruits[0]; 
+};
+$example(); //gives "Parse error: syntax error, unexpected '[', expecting ',' or ')' ... "
+
+//Would have to do this:
+
+$fruits = ['apples', 'oranges'];
+$example = function () use ($fruits) {
+    echo $fruits[0]; // will echo 'apples'
+};
+$example();
+
+
+//Or this instead:
+
+
+$fruits = ['apples', 'oranges'];
+$fruit = $fruits[0];
+$example = function () use ($fruit) {
+    echo $fruit; // will echo 'apples'
+};
+$example();
 
  ```
 
