@@ -37,6 +37,8 @@ Closures have additional object oriented uses as well. PHP 5.4 brings new method
  It is possible to use these functions func_num_args(), func_get_arg(), and func_get_args() from within a closure.
  
  You cannot access an array element inside the use() statement because it will give you an error  ([Example](#example-18)).
+ 
+Anonymous functions can return references just like named functions can. Simply use the & the same way you would for a named function. right after the `function` keyword (and right before the nonexistent name) ([Example](#example-19)).
 
 ---
 
@@ -422,6 +424,26 @@ $example();
 
  ```
 
+#### Example 19
+#### Returning a reference from an anonymous function
+ 
+ 
+ ```php
+<?php
+
+$value = 0;
+
+$fn = function &() use (&$value) { return $value; };
+
+ $x =& $fn();
+ 
+ var_dump($x, $value);        // 'int(0)', 'int(0)'
+ 
+ ++$x;
+    
+ var_dump($x, $value);        // 'int(1)', 'int(1)'
+    
+ ```
  
  
 
