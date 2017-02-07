@@ -32,7 +32,7 @@ Closures were introduced in PHP 5.3. As of PHP 5.4.0, when declared in the conte
 
 If you try to call a closure **stored in an instance variable** as you would regularly do with methods, it will **give you an error** because php tries to match the instance method called with the name of the instance variable wich is not defined in the original class' signature ([Example](#example-15)).
 
-Closures have additional object oriented uses as well. PHP 5.4 brings new methods to the Closure class’ interface. Specifically, the new bind and bindTo methods can be used to bind to new objects for the closure to operate on.
+Closures have additional object oriented uses as well. PHP 5.4 brings new methods to the Closure class’ interface. Specifically, the new bind and bindTo methods can be used to bind to new objects for the closure to operate on. Furthemore since the Closure class has the __invoke method, they can be type hinted as Callables ([Example](#example-17)).
 
  It is possible to use these functions func_num_args(), func_get_arg(), and func_get_args() from within a closure.
 
@@ -365,6 +365,26 @@ $array['func'](); // hello
 
  ```
 
+#### Example 17
+#### closure can be type hinted as Callables
+ 
+ 
+ ```php
+<?php
+
+$a['crazy_func'] = function (): Callable {
+    return function ($greeting) : Callable {
+        return function($name) use ($greeting){
+            return "{$greeting}  {$name} from Crazy func!";
+        };
+    };
+};
+
+
+echo $a['crazy_func']()('Hi')('Haiaty'); //outputs 'Hi Haiaty from Crazy func!'
+echo $a['crazy_func']()('Hello')('Jhon'); //outputs 'Hello Jhon from Crazy func!'
+
+ ```
 
  
  
