@@ -8,6 +8,8 @@
 
 Anonymous functions, also known as closures, allow the creation of functions which have **no specified name**. Because the function has no name, you can’t call it like a regular function. Instead you must either assign it to a variable ([Example](#example-3)) (PHP **automatically converts such expressions into instances of the Closure internal class**) or pass it to another function as an argument ([Example](#example-2)). 
 
+Closures become useful when some piece of logic needs to be performed in a limited scope but retain the ability to interact with the environment external to that scope. They can be used as throw away bits of functionality that don’t pollute the global namespace and are good to use as part of a callback. they are useful for one offs or where it doesn’t make sense to define a function. They are also useful when using PHP functions that accept a callback function like array_map, array_filter, array_reduce or array_walk.
+
 Anonymous functions are implemented using the [Closure class](http://www.php.net//manual/en/class.closure.php).
 
 Closures can also accept **regular arguments** ([Example](#example-1)).
@@ -24,21 +26,19 @@ You can **return a Closure from a function call** ([Example](#example-10)).
 
 You can **put a closure as a value of an associative array** and call it using array syntax followed by parenthesis ([Example](#example-16)).
 
-Closures become useful when some piece of logic needs to be performed in a limited scope but retain the ability to interact with the environment external to that scope. They can be used as throw away bits of functionality that don’t pollute the global namespace and are good to use as part of a callback. they are useful for one offs or where it doesn’t make sense to define a function. They are also useful when using PHP functions that accept a callback function like array_map, array_filter, array_reduce or array_walk.
-
 As of PHP7, you can **immediately execute anonymous functions** ([Example](#example-13)). 
 
 Closures were introduced in PHP 5.3. As of PHP 5.4.0, when declared in the context of a class, **the current class is automatically bound to it, making $this available inside of the function's scope** ([Example](#example-9)). If this automatic binding of the current class is not wanted, then static anonymous functions may be used instead. As of PHP 5.4, anonymous functions may be declared statically ([Example](#example-11)). **This prevents them from having the current class automatically bound to them**. Objects may also **not be bound to them at runtime** ([Example](#example-14)).
 
 If you try to call a closure **stored in an instance variable** as you would regularly do with methods, it will **give you an error** because php tries to match the instance method called with the name of the instance variable wich is not defined in the original class' signature ([Example](#example-15)).
 
-Closures have additional object oriented uses as well. PHP 5.4 brings new methods to the Closure class’ interface. Specifically, the new bind and bindTo methods can be used to bind to new objects for the closure to operate on. Furthemore since the Closure class has the __invoke method, they can be type hinted as Callables ([Example](#example-17)).
+Closures have additional object oriented uses as well. PHP 5.4 brings new methods to the Closure class’ interface. Specifically, the new bind and bindTo methods can be used to bind to new objects for the closure to operate on. Furthemore since the Closure class has the __invoke method, they can be **type hinted as Callables** ([Example](#example-17)).
 
  It is possible to use these functions func_num_args(), func_get_arg(), and func_get_args() from within a closure.
  
- You cannot access an array element inside the use() statement because it will give you an error  ([Example](#example-18)).
+ You **cannot access an array element inside the use()** keyword because it will give you an error  ([Example](#example-18)).
  
-Anonymous functions can return references just like named functions can. Simply use the & the same way you would for a named function. right after the `function` keyword (and right before the nonexistent name) ([Example](#example-19)).
+Anonymous functions **can return references** just like named functions can. Simply use the & the same way you would for a named function. right after the `function` keyword (and right before the nonexistent name) ([Example](#example-19)).
 
 ---
 
