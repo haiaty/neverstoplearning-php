@@ -1,6 +1,7 @@
 
 * [knowledge Aggregation](#anonymous-functionsclosures)
 * [Examples](#examples)
+  * [Closures accepting regular parameters](#closures-accepting-regular-parameters)
 * [Resources](#resources)
 
 
@@ -12,7 +13,7 @@ Closures become useful when some piece of logic needs to be performed in a limit
 
 Anonymous functions are implemented using the [Closure class](http://www.php.net//manual/en/class.closure.php).
 
-Closures can also accept **regular arguments** ([Example](#example-1)).
+Closures can also accept **regular arguments** ([Example](#closures-accepting-regular-parameters)).
 
 A closure encapsulates its scope, meaning that **it has no access to the scope in which it is defined or executed**. 
 
