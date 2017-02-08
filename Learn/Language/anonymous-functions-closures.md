@@ -445,6 +445,56 @@ $fn = function &() use (&$value) { return $value; };
     
  ```
  
+#### Example 20
+#### using anonymous function to change a method at runtime
+ 
+ 
+ ```php
+<?php
+
+class t
+{
+    var $num;
+    
+    var $dynamic_function;
+    
+    public function dynamic_function()
+    {
+        $func = $this->dynamic_function; 
+        
+        $func($this); 
+    }
+}
+
+$p = new t();
+
+$p->num = 5;
+
+$p->dynamic_function = function($this_ref) // param cannot be named $this
+{
+    echo $this_ref->num++.'<br />';
+};
+
+$p->dynamic_function(); // CALL YOUR DYNAMIC FUNCTION
+
+$p->dynamic_function = function($this_ref) // NEW DYNAMIC fUNCRION
+{
+    echo $this_ref->num.'<br />';
+    
+    $this_ref->num *= 3;
+};
+
+$p->dynamic_function(); // CALL DYNAMIC FUNCTION
+
+echo $p->num; 
+
+//outputs
+5
+6
+18
+
+ ```
+ 
  
 
 # Resources
