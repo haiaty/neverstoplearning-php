@@ -8,7 +8,9 @@ PHP, which stands for "PHP: Hypertext Preprocessor" is a widely-used Open Source
 * [How to run] (Learn/how-to-run.md)
 * [Language](Learn/Language)
  * [Variables](Learn/Language/variables.md)
+ * [Anonymous functions / Closures](Learn/Language/anonymous-functions-closures.md)
 * [OOP](Learn/OOP/)
   * [Classes](Learn/OOP/classes.md)
 * [PHP FPM](Learn/php-fpm.md)
+* [Utils](Learn/utils.md)
 
