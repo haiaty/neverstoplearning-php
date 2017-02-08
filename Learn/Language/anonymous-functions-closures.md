@@ -2,6 +2,7 @@
 * [knowledge Aggregation](#anonymous-functionsclosures)
 * [Examples](#examples)
   * [Closures accepting regular parameters](#closures-accepting-regular-parameters)
+* Tricks, tips and crazy things
 * [Resources](#resources)
 
 
