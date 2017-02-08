@@ -44,8 +44,6 @@ Anonymous functions **can return references** just like named functions can. Sim
 
 # Examples
 
-
-#### Example 1
 #### Closures accepting regular parameters
 
 
