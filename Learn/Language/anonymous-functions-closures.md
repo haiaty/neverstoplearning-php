@@ -7,8 +7,8 @@
   * [inherit variables from the parent scope into the closure with the use keyword](#inherit-variables-from-the-parent-scope-into-the-closure with the use keyword)
   * [Using closure in itself via reference](#using-closure-in-itself-via-reference)
 * [Tricks, tips and crazy things](#tricks-tips-and-crazy-things)
-  * [Inherited variable's value is from when the function is defined, not when called](#Inherited variable's value is from when the function is defined, not when called)
-  * [using anonymous function to change a method at runtime](#using-anonymous-function-to-change-a-method-at-runtime)
+  * [Inherited variable's value is from when the function is defined, not when called](#inherited-variables-value-is-from-when-the-function-is-defined-not-when-called)
+  * [using anonymous function to change a method at runtime](#using-anonymous-function-to-change-a-method-at-runtime)
 * [Resources](#resources)
 
 
