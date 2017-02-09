@@ -1,7 +1,11 @@
 
 * [knowledge Aggregation](#anonymous-functionsclosures)
 * [Examples](#examples)
+  * [Anonymous function as value of variables](#anonymous-function-as-value-of-variables)
+  * [Anonymous function as a callback] (#anonymous-function-as-a-callback)
   * [Closures accepting regular parameters](#closures-accepting-regular-parameters)
+  * [inherit variables from the parent scope into the closure with the use keyword](#inherit-variables-from-the-parent-scope-into-the-closure with the use keyword)
+  * [Using closure in itself via reference](#using-closure-in-itself-via-reference)
 * [Tricks, tips and crazy things](#tricks-tips-and-crazy things)
   * [using anonymous function to change a method at runtime](#using-anonymous-function-to-change-a-method-at-runtime)
 * [Resources](#resources)
@@ -9,7 +13,7 @@
 
 # Anonymous functions/closures
 
-Anonymous functions, also known as closures, allow the creation of functions which have **no specified name**. Because the function has no name, you can’t call it like a regular function. Instead you must either **assign it to a variable** ([Example](#example-3)) (PHP automatically converts such expressions into instances of the **Closure internal class**) or **pass it to another function as an argument (Callback)** ([Example](#example-2)). 
+Anonymous functions, also known as closures, allow the creation of functions which have **no specified name**. Because the function has no name, you can’t call it like a regular function. Instead you must either **assign it to a variable** ([Example](#anonymous-function-as-value-of-variables)) (PHP automatically converts such expressions into instances of the **Closure internal class**) or **pass it to another function as an argument (Callback)** ([Example](#anonymous-function-as-a-callback)). 
 
 Closures become useful when some piece of logic needs to be performed in a limited scope but retain the ability **to interact with the environment external to that scope**. They can be used as throw away bits of functionality that don’t pollute the global namespace and are good to use as part of a callback. they are useful for one offs or where it doesn’t make sense to define a function. They are also useful when using PHP functions that accept a callback function like array_map, array_filter, array_reduce or array_walk.
 
@@ -21,9 +25,9 @@ A closure encapsulates its scope, meaning that **it has no access to the scope i
 
  The parent scope of a closure is the function in which the closure **was declared (not necessarily the function it was called from)**. 
 
-It is, however, possible **to inherit variables from the parent scope (where the closure is defined) into the closure with the use keyword** ([Example](#example-4)). Inherited variable's value is from when the function is defined, **not when called** ([Example](#example-6)). This inherits the variables **by-value**, that is, a copy is made available inside the closure using its original name. If you want you can inherit it by-reference ([Example](#example-7)), but remenber that if you inherit it from reference then if the parent scope changes its value, that change **will be reflected in the closure** ([Example](#example-8)). From PHP 7.1, these variables may not include superglobals, $this, or variables with the same name as a parameter.
+It is, however, possible **to inherit variables from the parent scope (where the closure is defined) into the closure with the use keyword** ([Example](#inherit-variables-from-the-parent-scope-into-the-closure with the use keyword)). Inherited variable's value is from when the function is defined, **not when called** ([Example](#example-6)). This inherits the variables **by-value**, that is, a copy is made available inside the closure using its original name. If you want you can inherit it by-reference ([Example](#example-7)), but remenber that if you inherit it from reference then if the parent scope changes its value, that change **will be reflected in the closure** ([Example](#example-8)). From PHP 7.1, these variables may not include superglobals, $this, or variables with the same name as a parameter.
 
-You can use a closures in itself **via reference** ([Example](#example-5)).
+You can use a closures in itself **via reference** ([Example](#using-closure-in-itself-via-reference)).
 
 You can **return a Closure from a function call** ([Example](#example-10)). 
 
@@ -63,8 +67,6 @@ $example("hello");
  
  ```
 
-
-#### Example 2
 #### Anonymous function as a callback
 
  ```php
@@ -81,7 +83,6 @@ echo preg_replace_callback('~-([a-z])~', function ($match) {
  
  ```
  
-#### Example 3
 #### Anonymous function as value of variables
 
  ```php
@@ -103,8 +104,7 @@ $greet('PHP');
  
  ```
 
-#### Example 4
-#### inherit variables from the parent scope (where the closure is defined) into the closure with the use keyword
+#### inherit variables from the parent scope into the closure with the use keyword
 
 
  ```php
@@ -122,8 +122,7 @@ $greet('PHP');
  $closure(); // "Hello World"
  
  ```
-
-#### Example 5
+ 
 #### Using closure in itself via reference
  
  
