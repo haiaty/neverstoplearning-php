@@ -6,8 +6,9 @@
   * [Closures accepting regular parameters](#closures-accepting-regular-parameters)
   * [inherit variables from the parent scope into the closure with the use keyword](#inherit-variables-from-the-parent-scope-into-the-closure with the use keyword)
   * [Using closure in itself via reference](#using-closure-in-itself-via-reference)
-* [Tricks, tips and crazy things](#tricks-tips-and-crazy things)
-  * [using anonymous function to change a method at runtime](#using-anonymous-function-to-change-a-method-at-runtime)
+* [Tricks, tips and crazy things](#tricks-tips-and-crazy-things)
+  * [Inherited variable's value is from when the function is defined, not when called](#Inherited variable's value is from when the function is defined, not when called)
+  * [using anonymous function to change a method at runtime](#using-anonymous-function-to-change-a-method-at-runtime)
 * [Resources](#resources)
 
 
@@ -149,27 +150,6 @@ $deleteDirectory = function($path) use (&$deleteDirectory) {
 
 $deleteDirectory("path/to/directoy");
  
- 
- ```
-
-#### Example 6
-#### Inherited variable's value is from when the function is defined, not when called 
- 
- 
- ```php
-  
- <?php
-       
-$message = 'hello';
-
-$example = function () use ($message) {
-    var_dump($message);
-};
-
-$message = 'world';
-$example();
- 
- //prints 'hello'
  
  ```
  
@@ -446,6 +426,25 @@ $fn = function &() use (&$value) { return $value; };
  ```
  
 # Tricks, tips and crazy things
+
+#### Inherited variable's value is from when the function is defined, not when called 
+ 
+ ```php
+  
+ <?php
+       
+$message = 'hello';
+
+$example = function () use ($message) {
+    var_dump($message);
+};
+
+$message = 'world';
+$example();
+ 
+ //prints 'hello'
+ 
+ ```
  
 #### using anonymous function to change a method at runtime
  
