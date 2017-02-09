@@ -2,7 +2,8 @@
 * [knowledge Aggregation](#anonymous-functionsclosures)
 * [Examples](#examples)
   * [Closures accepting regular parameters](#closures-accepting-regular-parameters)
-* Tricks, tips and crazy things
+* [Tricks, tips and crazy things](#tricks-tips-and-crazy things)
+  * [using anonymous function to change a method at runtime](#-using-anonymous-function to change a method at runtime)
 * [Resources](#resources)
 
 
@@ -445,10 +446,11 @@ $fn = function &() use (&$value) { return $value; };
     
  ```
  
-#### Example 20
+# Tricks, tips and crazy things
+ 
 #### using anonymous function to change a method at runtime
  
- 
+
  ```php
 <?php
 
