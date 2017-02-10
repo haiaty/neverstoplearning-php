@@ -5,7 +5,10 @@
   * [Anonymous function as a callback] (#anonymous-function-as-a-callback)
   * [Closures accepting regular parameters](#closures-accepting-regular-parameters)
   * [inherit variables from the parent scope into the closure with the use keyword](#inherit-variables-from-the-parent-scope-into-the-closure with the use keyword)
+  * [Inheriting variable from parent scope by reference](#inheriting-variable-from-parent-scope-by-reference)
   * [Using closure in itself via reference](#using-closure-in-itself-via-reference)
+  * [Changes on variables inherited by reference are reflected inside the closure](#changes-on-variables-inherited-by-reference-are-reflected-inside-the-closure)
+  * [closure declared in the context of a class](#closure-declared-in-the-context-of-a-class)
 * [Tricks, tips and crazy things](#tricks-tips-and-crazy-things)
   * [Inherited variable's value is from when the function is defined, not when called](#inherited-variables-value-is-from-when-the-function-is-defined-not-when-called)
   * [using anonymous function to change a method at runtime](#using-anonymous-function-to-change-a-method-at-runtime)
@@ -26,7 +29,7 @@ A closure encapsulates its scope, meaning that **it has no access to the scope i
 
  The parent scope of a closure is the function in which the closure **was declared (not necessarily the function it was called from)**. 
 
-It is, however, possible **to inherit variables from the parent scope (where the closure is defined) into the closure with the use keyword** ([Example](#inherit-variables-from-the-parent-scope-into-the-closure with the use keyword)). Inherited variable's value is from when the function is defined, **not when called** ([Example](#example-6)). This inherits the variables **by-value**, that is, a copy is made available inside the closure using its original name. If you want you can inherit it by-reference ([Example](#example-7)), but remenber that if you inherit it from reference then if the parent scope changes its value, that change **will be reflected in the closure** ([Example](#example-8)). From PHP 7.1, these variables may not include superglobals, $this, or variables with the same name as a parameter.
+It is, however, possible **to inherit variables from the parent scope (where the closure is defined) into the closure with the use keyword** ([Example](#inherit-variables-from-the-parent-scope-into-the-closure with the use keyword)). Inherited variable's value is from when the function is defined, **not when called** ([Example](#inherited-variables-value-is-from-when-the-function-is-defined-not-when-called)). This inherits the variables **by-value**, that is, a copy is made available inside the closure using its original name. If you want you can inherit it by-reference ([Example](#inheriting-variable-from-parent-scope-by-reference)), but remenber that if you inherit it from reference then if the parent scope changes its value, that change **will be reflected in the closure** ([Example](#changes-on-variables-inherited-by-reference-are-reflected-inside-the-closure)). From PHP 7.1, these variables may not include superglobals, $this, or variables with the same name as a parameter.
 
 You can use a closures in itself **via reference** ([Example](#using-closure-in-itself-via-reference)).
 
@@ -36,7 +39,7 @@ You can **put a closure as a value of an associative array** and call it using a
 
 As of PHP7, you can **immediately execute anonymous functions** ([Example](#example-13)). 
 
-Closures were introduced in PHP 5.3. As of PHP 5.4.0, when declared in the context of a class, **the current class is automatically bound to it, making $this available inside of the function's scope** ([Example](#example-9)). If this automatic binding of the current class is not wanted, then static anonymous functions may be used instead. As of PHP 5.4, anonymous functions may be declared statically ([Example](#example-11)). **This prevents them from having the current class automatically bound to them**. Objects may also **not be bound to them at runtime** ([Example](#example-14)).
+Closures were introduced in PHP 5.3. As of PHP 5.4.0, when declared in the context of a class, **the current class is automatically bound to it, making $this available inside of the function's scope** ([Example](#closure-declared-in-the-context-of-a-class)). If this automatic binding of the current class is not wanted, then static anonymous functions may be used instead. As of PHP 5.4, anonymous functions may be declared statically ([Example](#example-11)). **This prevents them from having the current class automatically bound to them**. Objects may also **not be bound to them at runtime** ([Example](#example-14)).
 
 If you try to call a closure **stored in an instance variable** as you would regularly do with methods, it will **give you an error** because php tries to match the instance method called with the name of the instance variable wich is not defined in the original class' signature ([Example](#example-15)).
 
@@ -47,6 +50,8 @@ Closures have additional object oriented uses as well. PHP 5.4 brings new method
  You **cannot access an array element inside the use()** keyword because it will give you an error  ([Example](#example-18)).
  
 Anonymous functions **can return references** just like named functions can. Simply use the & the same way you would for a named function. right after the `function` keyword (and right before the nonexistent name) ([Example](#example-19)).
+
+You can't **serialize a  PHP Closure object**. If you try  you get a very specific error message from the PHP Runtime: 'Uncaught exception 'Exception' with message 'Serialization of 'Closure' is not allowed''. If you need to serialize a closure try to use this library [PHP SuperClosure](https://github.com/jeremeamia/super_closure)
 
 ---
 
@@ -153,7 +158,6 @@ $deleteDirectory("path/to/directoy");
  
  ```
  
-#### Example 7
 #### Inheriting variable from parent scope by reference
  
  
@@ -172,8 +176,7 @@ $example();
  
  ```
  
-#### Example 8
-#### Inheriting variable from parent scope by reference and changes on parent scope is reflecte on closure
+#### Changes on variables inherited by reference are reflected inside the closure 
  
  
  ```php
@@ -194,8 +197,7 @@ $example();  //prints 'changed from parent Scope!'
  ```
  
   
-#### Example 9
-#### closure declared in the context of a class, the current class is automatically bound to it, making $this available inside of the function's scope (only for PHP >= 5.4)
+#### closure declared in the context of a class
  
  
  ```php
