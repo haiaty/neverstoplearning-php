@@ -14,6 +14,7 @@
   * [Attempting to bind an object to a static anonymous function](#attempting-to-bind-an-object-to-a-static-anonymous-function)
   * [Type hinting closures as Callables](#type-hinting-closures-as-callables)
   * [Returning a reference from an anonymous function](#returning-a-reference-from-an-anonymous-function)
+  * [Accessing private method of a class inside a Closure](#accessing-private-method-of-a-class-inside-a-Closure)
 * [Tricks, tips and crazy things](#tricks-tips-and-crazy-things)
   * [Closure as a value of an associative array](#closure-as-a-value-of-an-associative-array)
   * [Immediatily invoking an anonimous function](#immediatily-invoking-an-anonimous-function)
@@ -29,11 +30,11 @@
 
 # Anonymous functions/closures
 
-Anonymous functions, also known as closures, allow the creation of functions which have **no specified name**. Because the function has no name, you can’t call it like a regular function. Instead you must either **assign it to a variable** ([Example](#anonymous-function-as-value-of-variables)) (PHP automatically converts such expressions into instances of the **Closure internal class**) or **pass it to another function as an argument (Callback)** ([Example](#anonymous-function-as-a-callback)). 
+Anonymous functions (someone call them Lambda functions), also known as closures (in PHP), allow the creation of functions which have **no specified name**.They were introduced in PHP 5.3.Because the function has no name, you can’t call it like a regular function. Instead you must either **assign it to a variable** ([Example](#anonymous-function-as-value-of-variables)) (PHP automatically converts such expressions into instances of the **Closure internal class**) or **pass it to another function as an argument (Callback)** ([Example](#anonymous-function-as-a-callback)). 
+
+The difference between an anonymous function and a closure is basically that the closure are anonymous functions that have acces to the parent scope using the use keyword. This is why PHP treat anonymous functions as Closure objects. In fact anonymous functions are implemented using the [Closure class](http://www.php.net//manual/en/class.closure.php). So if you want you can type hint it as Closure type (If you are using namespaces, make sure you give a fully qualified namespace.).
 
 Closures become useful when some piece of logic needs to be performed in a limited scope but retain the ability **to interact with the environment external to that scope**. They can be used as throw away bits of functionality that don’t pollute the global namespace and are good to use as part of a callback. they are useful for one offs or where it doesn’t make sense to define a function. They are also useful when using PHP functions that accept a callback function like array_map, array_filter, array_reduce or array_walk.
-
-Anonymous functions are implemented using the [Closure class](http://www.php.net//manual/en/class.closure.php). So if you want you can type hint it as Closure type (If you are using namespaces, make sure you give a fully qualified namespace.).
 
 Closures can also accept **regular arguments** ([Example](#closures-accepting-regular-parameters)).
 
@@ -51,7 +52,7 @@ You can **put a closure as a value of an associative array** and call it using a
 
 As of PHP7, you can **immediately execute anonymous functions** ([Example](#immediatily-invoking-an-anonimous-function)). 
 
-Closures were introduced in PHP 5.3. As of PHP 5.4.0, when declared in the context of a class, **the current class is automatically bound to it, making $this available inside of the function's scope** ([Example](#closure-declared-in-the-context-of-a-class)). If this automatic binding of the current class is not wanted, then static anonymous functions may be used instead. As of PHP 5.4, anonymous functions may be declared statically ([Example](#static-closure-declaration)). **This prevents them from having the current class automatically bound to them**. Objects may also **not be bound to them at runtime** ([Example](#attempting-to-bind-an-object-to-a-static-anonymous-function)).
+As of PHP 5.4.0 when declared in the context of a class, **the current class is automatically bound to it, making $this available inside of the function's scope** ([Example](#closure-declared-in-the-context-of-a-class)). If this automatic binding of the current class is not wanted, then static anonymous functions may be used instead. As of PHP 5.4, anonymous functions may be declared statically ([Example](#static-closure-declaration)). **This prevents them from having the current class automatically bound to them**. Objects may also **not be bound to them at runtime** ([Example](#attempting-to-bind-an-object-to-a-static-anonymous-function)). PHP 5.4 now allows accessing private and protected members of an object if it's passed into an anymous function ([Example](#accessing-private-method-of-a-class-inside-a-Closure))
 
 If you try to call a closure **stored in an instance variable** as you would regularly do with methods, it will **give you an error** because php tries to match the instance method called with the name of the instance variable wich is not defined in the original class' signature ([Example](#how-to-call-a-closure-stored-in-a-instance-variable)).
 
@@ -328,6 +329,36 @@ $fn = function &() use (&$value) { return $value; };
     
  var_dump($x, $value);        // 'int(1)', 'int(1)'
     
+ ```
+ 
+ #### Accessing private method of a class inside a Closure
+ 
+ ``` php 
+ 
+ <?php
+ 
+ class Scope
+{
+   
+    private $property = 'default';
+
+    public function run()
+    {
+        $self = $this;
+        $func = function() use ($self) {
+            $self->property = 'changed';
+        };
+
+        $func();
+        var_dump($this->property);
+    }
+}
+
+$scope = new Scope();
+$scope->run();
+
+//outputs 'changed'
+ 
  ```
  
 # Tricks, tips and crazy things
