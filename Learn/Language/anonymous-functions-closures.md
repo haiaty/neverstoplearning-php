@@ -505,7 +505,7 @@ $example();
  ```
  
  
- #### How to call a closure stored in a instance variable
+#### How to call a closure stored in a instance variable
  
  
  ```php
