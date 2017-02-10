@@ -26,6 +26,7 @@
   * [$this variable is undefined inside static function](#this-variable-is-undefined-inside-static-function)
   * [Adding public functions to class using closures](#adding-public-functions-to-class-using-closures)
   * [Calling closures assigned to class properties as class methods](#calling-closures-assigned-to-class-properties-as-class-methods)
+  * [check whether you're dealing with a closure specifically](#check-whether-youre-dealing-with-a-closure-specifically)
 * [Resources](#resources)
 
 
@@ -384,7 +385,7 @@ $array = Array(
 
  ```
  
- #### Immediatily invoking an anonimous function
+#### Immediatily invoking an anonimous function
  
  
  ```php
@@ -504,7 +505,7 @@ $example();
  ```
  
  
-#### How to call a closure stored in a instance variable
+ #### How to call a closure stored in a instance variable
  
  
  ```php
@@ -665,7 +666,7 @@ $service('test 2');
   ```
   
   
- #### Calling closures assigned to class properties as class methods
+#### Calling closures assigned to class properties as class methods
  
   ```php
   
@@ -706,6 +707,17 @@ $func = function() use ($this) {
 
 //gives you 'PHP Fatal error:  Cannot use $this as lexical variable'
 
+
+?>
+
+```
+
+#### check whether you're dealing with a closure specifically
+ 
+```php
+<?php
+
+$isAClosure = is_callable($thing) && is_object($thing);
 
 ?>
 
