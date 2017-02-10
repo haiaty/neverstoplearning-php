@@ -549,7 +549,7 @@ new class {
 
  ```
  
- #### Adding public functions to class using closures 
+#### Adding public functions to class using closures 
  
  
  ```php
@@ -586,7 +586,7 @@ new class {
 
  ```
  
- #### how to use closures to implement a Python-like decorator
+#### how to use closures to implement a Python-like decorator
  
   ```php
   
@@ -695,7 +695,6 @@ $f->test();
   
   ```
   
-    
 #### can't use $this in use keyword
  
  
