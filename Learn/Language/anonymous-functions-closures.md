@@ -19,6 +19,7 @@
   * [Closure as a value of an associative array](#closure-as-a-value-of-an-associative-array)
   * [Immediatily invoking an anonimous function](#immediatily-invoking-an-anonimous-function)
   * [can't access array element inside use keyword](#cant-access-array-element-inside-use-keyword)
+  * [can't use $this in use keyword](#cant-use-$this-in-use-keyword)
   * [Inherited variable's value is from when the function is defined, not when called](#inherited-variables-value-is-from-when-the-function-is-defined-not-when-called)
   * [using anonymous function to change a method at runtime](#using-anonymous-function-to-change-a-method-at-runtime)
   * [How to call a closure stored in a instance variable](#how-to-call-a-closure-stored-in-a-instance-variable)
@@ -60,7 +61,7 @@ Closures have additional object oriented uses as well. PHP 5.4 brings new method
 
  It is possible to use these functions func_num_args(), func_get_arg(), and func_get_args() from within a closure.
  
- You **cannot access an array element inside the use** keyword because it will give you an error  ([Example](#cant-access-array-element-inside-use-keyword)).
+ You **cannot access an array element inside the use** keyword because it will give you an error  ([Example](#cant-access-array-element-inside-use-keyword)). Also you can't use the $this variable inside the use keyword ([Example](#cant-use-$this-in-use-keyword)).
  
 Anonymous functions **can return references** just like named functions can. Simply use the & the same way you would for a named function. right after the `function` keyword (and right before the nonexistent name) ([Example](#returning-a-reference-from-an-anonymous-function)).
 
@@ -692,6 +693,23 @@ $f = new foo();
 $f->test();
   
   ```
+  
+    
+#### can't use $this in use keyword
+ 
+ 
+```php
+<?php
+$func = function() use ($this) {
+    $this->property = 'changed';
+};
+
+//gives you 'PHP Fatal error:  Cannot use $this as lexical variable'
+
+
+?>
+
+```
 
 # Resources
  
