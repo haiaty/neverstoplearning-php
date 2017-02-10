@@ -5,13 +5,20 @@
   * [Anonymous function as a callback] (#anonymous-function-as-a-callback)
   * [Closures accepting regular parameters](#closures-accepting-regular-parameters)
   * [inherit variables from the parent scope into the closure with the use keyword](#inherit-variables-from-the-parent-scope-into-the-closure-with-the-use-keyword)
+  * [Closure returned from function call](#closure-returned-from-function-call)
   * [Inheriting variable from parent scope by reference](#inheriting-variable-from-parent-scope-by-reference)
   * [Using closure in itself via reference](#using-closure-in-itself-via-reference)
   * [Changes on variables inherited by reference are reflected inside the closure](#changes-on-variables-inherited-by-reference-are-reflected-inside-the-closure)
-  * [closure declared in the context of a class](#closure-declared-in-the-context-of-a-class)
+  * [Closure declared in the context of a class](#closure-declared-in-the-context-of-a-class)
+  * [Static closure declaration](#static-closure-declaration)
+  * [Attempting to bind an object to a static anonymous function](#attempting-to-bind-an-object-to-a-static-anonymous-function)
+  * [Type hinting closures as Callables](#type-hinting-closures-as-callables)
 * [Tricks, tips and crazy things](#tricks-tips-and-crazy-things)
+  * [Closure as a value of an associative array](#closure-as-a-value-of-an-associative-array)
+  * [Immediatily invoking an anonimous function](#immediatily-invoking-an-anonimous-function)
   * [Inherited variable's value is from when the function is defined, not when called](#inherited-variables-value-is-from-when-the-function-is-defined-not-when-called)
   * [using anonymous function to change a method at runtime](#using-anonymous-function-to-change-a-method-at-runtime)
+  * [How to call a closure stored in a instance variable](#how-to-call-a-closure-stored-in-a-instance-variable)
 * [Resources](#resources)
 
 
@@ -33,17 +40,17 @@ It is, however, possible **to inherit variables from the parent scope (where the
 
 You can use a closures in itself **via reference** ([Example](#using-closure-in-itself-via-reference)).
 
-You can **return a Closure from a function call** ([Example](#example-10)). 
+You can **return a Closure from a function call** ([Example](#closure-returned-from-function-call)). 
 
-You can **put a closure as a value of an associative array** and call it using array syntax followed by parenthesis ([Example](#example-16)).
+You can **put a closure as a value of an associative array** and call it using array syntax followed by parenthesis ([Example](#closure-as-a-value-of-an-associative-array)).
 
-As of PHP7, you can **immediately execute anonymous functions** ([Example](#example-13)). 
+As of PHP7, you can **immediately execute anonymous functions** ([Example](#immediatily-invoking-an-anonimous-function)). 
 
-Closures were introduced in PHP 5.3. As of PHP 5.4.0, when declared in the context of a class, **the current class is automatically bound to it, making $this available inside of the function's scope** ([Example](#closure-declared-in-the-context-of-a-class)). If this automatic binding of the current class is not wanted, then static anonymous functions may be used instead. As of PHP 5.4, anonymous functions may be declared statically ([Example](#example-11)). **This prevents them from having the current class automatically bound to them**. Objects may also **not be bound to them at runtime** ([Example](#example-14)).
+Closures were introduced in PHP 5.3. As of PHP 5.4.0, when declared in the context of a class, **the current class is automatically bound to it, making $this available inside of the function's scope** ([Example](#closure-declared-in-the-context-of-a-class)). If this automatic binding of the current class is not wanted, then static anonymous functions may be used instead. As of PHP 5.4, anonymous functions may be declared statically ([Example](#static-closure-declaration)). **This prevents them from having the current class automatically bound to them**. Objects may also **not be bound to them at runtime** ([Example](#attempting-to-bind-an-object-to-a-static-anonymous-function)).
 
-If you try to call a closure **stored in an instance variable** as you would regularly do with methods, it will **give you an error** because php tries to match the instance method called with the name of the instance variable wich is not defined in the original class' signature ([Example](#example-15)).
+If you try to call a closure **stored in an instance variable** as you would regularly do with methods, it will **give you an error** because php tries to match the instance method called with the name of the instance variable wich is not defined in the original class' signature ([Example](#how-to-call-a-closure-stored-in-a-instance-variable)).
 
-Closures have additional object oriented uses as well. PHP 5.4 brings new methods to the Closure class’ interface. Specifically, the new bind and bindTo methods can be used to bind to new objects for the closure to operate on. Furthemore since the Closure class has the __invoke method, they can be **type hinted as Callables** ([Example](#example-17)).
+Closures have additional object oriented uses as well. PHP 5.4 brings new methods to the Closure class’ interface. Specifically, the new bind and bindTo methods can be used to bind to new objects for the closure to operate on. Furthemore since the Closure class has the __invoke method, they can be **type hinted as Callables** ([Example](#type-hinting-closures-as-callables)).
 
  It is possible to use these functions func_num_args(), func_get_arg(), and func_get_args() from within a closure.
  
@@ -227,7 +234,6 @@ $func(); //outputs 'Red'
 
  ```
  
-#### Example 10 
 #### closure returned from function call
  
  
@@ -246,8 +252,7 @@ $a('World'); //outputs 'Hi World';
 
  ```
  
- 
-#### Example 11 
+
 #### static closure declaration
  
  
@@ -284,8 +289,7 @@ new class {
 //NULL
 
  ```
- 
-#### Example 13 
+  
 #### Immediatily invoking an anonimous function
  
  
@@ -296,7 +300,6 @@ new class {
 
  ```
 
-#### Example 14 
 #### Attempting to bind an object to a static anonymous function
  
  
@@ -312,8 +315,8 @@ $d(); //get a warning, a notice and null because you canot bind an static closur
  ```
  
  
-#### Example 15
-#### Trying to call a closure stored in a instance variable
+
+#### How to call a closure stored in a instance variable
  
  
  ```php
@@ -336,7 +339,6 @@ call_user_func($obj->func);
 
  ```
  
-#### Example 16
 #### closure as a value of an associative array
  
  
@@ -351,8 +353,7 @@ $array['func'](); // hello
 
  ```
 
-#### Example 17
-#### closure can be type hinted as Callables
+####  type hinting closures as Callables
  
  
  ```php
