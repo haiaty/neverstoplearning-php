@@ -270,28 +270,6 @@ $d = $b->bindTo(new StdClass());
 $d(); //get a warning, a notice and null because you canot bind an static closure to an object
 
  ```
-
-
-#### $this variable is undefined inside static function 
- 
- 
- ```php
-<?php
-
-new class {
-    function __construct()
-    {
-        (static function() {
-            var_dump($this);
-        })();
-    }
-};
-
-//will output
-//Notice: Undefined variable: this in %s on line %d
-//NULL
-
- ```
   
 
 #### Attempting to bind an object to a static anonymous function
@@ -499,6 +477,27 @@ $func();
 
 // or:
 call_user_func($obj->func);
+
+ ```
+ 
+#### $this variable is undefined inside static function 
+ 
+ 
+ ```php
+<?php
+
+new class {
+    function __construct()
+    {
+        (static function() {
+            var_dump($this);
+        })();
+    }
+};
+
+//will output
+//Notice: Undefined variable: this in %s on line %d
+//NULL
 
  ```
 
