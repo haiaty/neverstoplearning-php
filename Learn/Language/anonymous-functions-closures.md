@@ -21,7 +21,7 @@
   * [Inherited variable's value is from when the function is defined, not when called](#inherited-variables-value-is-from-when-the-function-is-defined-not-when-called)
   * [using anonymous function to change a method at runtime](#using-anonymous-function-to-change-a-method-at-runtime)
   * [How to call a closure stored in a instance variable](#how-to-call-a-closure-stored-in-a-instance-variable)
-  * [$this variable is undefined inside static function](#$this-variable-is-undefined-inside-static-function)
+  * [$this variable is undefined inside static function](#this-variable-is-undefined-inside-static-function)
 * [Resources](#resources)
 
 
