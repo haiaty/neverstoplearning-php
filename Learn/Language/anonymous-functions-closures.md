@@ -4,7 +4,7 @@
   * [Anonymous function as value of variables](#anonymous-function-as-value-of-variables)
   * [Anonymous function as a callback] (#anonymous-function-as-a-callback)
   * [Closures accepting regular parameters](#closures-accepting-regular-parameters)
-  * [inherit variables from the parent scope into the closure with the use keyword](#inherit-variables-from-the-parent-scope-into-the-closure with the use keyword)
+  * [inherit variables from the parent scope into the closure with the use keyword](#inherited-variables-value-is-from-when-the-function-is-defined-not-when-called)
   * [Inheriting variable from parent scope by reference](#inheriting-variable-from-parent-scope-by-reference)
   * [Using closure in itself via reference](#using-closure-in-itself-via-reference)
   * [Changes on variables inherited by reference are reflected inside the closure](#changes-on-variables-inherited-by-reference-are-reflected-inside-the-closure)
