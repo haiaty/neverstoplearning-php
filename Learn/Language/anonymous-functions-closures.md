@@ -332,7 +332,7 @@ $fn = function &() use (&$value) { return $value; };
     
  ```
  
- #### Accessing private method of a class inside a Closure
+#### Accessing private method of a class inside a Closure
  
  ``` php 
  
