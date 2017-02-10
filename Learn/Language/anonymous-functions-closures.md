@@ -13,9 +13,11 @@
   * [Static closure declaration](#static-closure-declaration)
   * [Attempting to bind an object to a static anonymous function](#attempting-to-bind-an-object-to-a-static-anonymous-function)
   * [Type hinting closures as Callables](#type-hinting-closures-as-callables)
+  * [Returning a reference from an anonymous function](#returning-a-reference-from-an-anonymous-function)
 * [Tricks, tips and crazy things](#tricks-tips-and-crazy-things)
   * [Closure as a value of an associative array](#closure-as-a-value-of-an-associative-array)
   * [Immediatily invoking an anonimous function](#immediatily-invoking-an-anonimous-function)
+  * [can't access array element inside use keyword](#can't-access-array-element-inside-use-keyword)
   * [Inherited variable's value is from when the function is defined, not when called](#inherited-variables-value-is-from-when-the-function-is-defined-not-when-called)
   * [using anonymous function to change a method at runtime](#using-anonymous-function-to-change-a-method-at-runtime)
   * [How to call a closure stored in a instance variable](#how-to-call-a-closure-stored-in-a-instance-variable)
@@ -54,9 +56,9 @@ Closures have additional object oriented uses as well. PHP 5.4 brings new method
 
  It is possible to use these functions func_num_args(), func_get_arg(), and func_get_args() from within a closure.
  
- You **cannot access an array element inside the use()** keyword because it will give you an error  ([Example](#example-18)).
+ You **cannot access an array element inside the use** keyword because it will give you an error  ([Example](##can't-access-array-element-inside-use-keyword)).
  
-Anonymous functions **can return references** just like named functions can. Simply use the & the same way you would for a named function. right after the `function` keyword (and right before the nonexistent name) ([Example](#example-19)).
+Anonymous functions **can return references** just like named functions can. Simply use the & the same way you would for a named function. right after the `function` keyword (and right before the nonexistent name) ([Example](#returning-a-reference-from-an-anonymous-function)).
 
 You can't **serialize a  PHP Closure object**. If you try  you get a very specific error message from the PHP Runtime: 'Uncaught exception 'Exception' with message 'Serialization of 'Closure' is not allowed''. If you need to serialize a closure try to use this library [PHP SuperClosure](https://github.com/jeremeamia/super_closure)
 
@@ -373,8 +375,7 @@ echo $a['crazy_func']()('Hello')('Jhon'); //outputs 'Hello Jhon from Crazy func!
 
  ```
  
-#### Example 18
-#### trying to acces array element inside use keyword
+#### can't access array element inside use keyword
  
  
  ```php
@@ -406,8 +407,6 @@ $example = function () use ($fruit) {
 $example();
 
  ```
-
-#### Example 19
 #### Returning a reference from an anonymous function
  
  
