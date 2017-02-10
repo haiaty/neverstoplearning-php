@@ -38,7 +38,19 @@ The difference between an anonymous function and a closure is basically that the
 
 Closures become useful when some piece of logic needs to be performed in a limited scope but retain the ability **to interact with the environment external to that scope**. They can be used as throw away bits of functionality that don’t pollute the global namespace and are good to use as part of a callback. they are useful for one offs or where it doesn’t make sense to define a function. They are also useful when using PHP functions that accept a callback function like array_map, array_filter, array_reduce or array_walk.
 
-Closures can also accept **regular arguments** ([Example](#closures-accepting-regular-parameters)).
+The syntax for closures is:
+
+```php
+
+function & (parameters) use (lexical vars) { body }
+
+//The & is optional and indicates that the function should return a reference. 
+//The use followed by the parentheses is optional and 
+//indicates that several variables from the current scope should be imported into the closure.
+
+```
+
+Closures can accept **regular arguments** ([Example](#closures-accepting-regular-parameters)).
 
 A closure encapsulates its scope, meaning that **it has no access to the scope in which it is defined or executed**. 
 
@@ -67,6 +79,12 @@ Closures have additional object oriented uses as well. PHP 5.4 brings new method
 Anonymous functions **can return references** just like named functions can. Simply use the & the same way you would for a named function. right after the `function` keyword (and right before the nonexistent name) ([Example](#returning-a-reference-from-an-anonymous-function)).
 
 You can't **serialize a  PHP Closure object**. If you try  you get a very specific error message from the PHP Runtime: 'Uncaught exception 'Exception' with message 'Serialization of 'Closure' is not allowed''. If you need to serialize a closure try to use this library [PHP SuperClosure](https://github.com/jeremeamia/super_closure)
+
+#### Common misconceptions
+
+Lambda functions / closures are not a way of dynamically extending classes by additional methods at runtime. There are several other possibilities to do this, including __call semantic.
+
+PHP's notion of scope is quite different than the notion of scope other languages define. Combine this with variable variables ($$var) and it becomes clear that automatically detecting which variables from the outer scope are referenced inside are closure is impossible. Also, since for example global variables are not visible inside functions either by default, automatically making the parent scope available would break with the current language concept PHP follows
 
 ---
 
@@ -729,6 +747,7 @@ $isAClosure = is_callable($thing) && is_object($thing);
  * [Question about closures from an article on toptal.com](https://www.toptal.com/php)
  * [What are PHP Lambdas and Closures?] (http://culttt.com/2013/03/25/what-are-php-lambdas-and-closures/)
  * [Functional PHP] (https://leanpub.com/functional-php/read)
+ * [https://wiki.php.net/rfc/closures](https://wiki.php.net/rfc/closures)
  
 
  
