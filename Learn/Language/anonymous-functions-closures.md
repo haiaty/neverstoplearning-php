@@ -22,6 +22,8 @@
   * [using anonymous function to change a method at runtime](#using-anonymous-function-to-change-a-method-at-runtime)
   * [How to call a closure stored in a instance variable](#how-to-call-a-closure-stored-in-a-instance-variable)
   * [$this variable is undefined inside static function](#this-variable-is-undefined-inside-static-function)
+  * [Adding public functions to class using closures](#adding-public-functions-to-class-using-closures)
+  * [Calling closures assigned to class properties as class methods](#calling-closures-assigned-to-class-properties-as-class-methods)
 * [Resources](#resources)
 
 
@@ -31,7 +33,7 @@ Anonymous functions, also known as closures, allow the creation of functions whi
 
 Closures become useful when some piece of logic needs to be performed in a limited scope but retain the ability **to interact with the environment external to that scope**. They can be used as throw away bits of functionality that don’t pollute the global namespace and are good to use as part of a callback. they are useful for one offs or where it doesn’t make sense to define a function. They are also useful when using PHP functions that accept a callback function like array_map, array_filter, array_reduce or array_walk.
 
-Anonymous functions are implemented using the [Closure class](http://www.php.net//manual/en/class.closure.php).
+Anonymous functions are implemented using the [Closure class](http://www.php.net//manual/en/class.closure.php). So if you want you can type hint it as Closure type (If you are using namespaces, make sure you give a fully qualified namespace.).
 
 Closures can also accept **regular arguments** ([Example](#closures-accepting-regular-parameters)).
 
@@ -45,7 +47,7 @@ You can use a closures in itself **via reference** ([Example](#using-closure-in-
 
 You can **return a Closure from a function call** ([Example](#closure-returned-from-function-call)). 
 
-You can **put a closure as a value of an associative array** and call it using array syntax followed by parenthesis ([Example](#closure-as-a-value-of-an-associative-array)).
+You can **put a closure as a value of an associative array** and call it using array syntax followed by parenthesis. You cannot do the same with the array assignment operator. ([Example](#closure-as-a-value-of-an-associative-array))
 
 As of PHP7, you can **immediately execute anonymous functions** ([Example](#immediatily-invoking-an-anonimous-function)). 
 
@@ -342,6 +344,12 @@ echo "hello";
 
 $array['func'](); // hello
 
+
+//WILL NOT WORK
+$array = Array(
+  'key' => function() { return $whatever; }
+);
+
  ```
  
  #### Immediatily invoking an anonimous function
@@ -351,6 +359,13 @@ $array['func'](); // hello
 <?php
 
 (function() { echo 123; })(); // will print 123
+
+
+//Passing parameters
+
+(function($name){
+        echo 'My name is ' . $name;
+    })('Wu Xiancheng');
 
  ```
 
@@ -500,6 +515,152 @@ new class {
 //NULL
 
  ```
+ 
+ #### Adding public functions to class using closures 
+ 
+ 
+ ```php
+ 
+ <?php
+/*
+    (string) $name Name of the function that you will add to class.
+    Usage : $Foo->add(function(){},$name);
+    This will add a public function in Foo Class.
+    */
+    class Foo
+    {
+        public function add($func,$name)
+        {
+            $this->{$name} = $func;
+        }
+        public function __call($func,$arguments){
+            call_user_func_array($this->{$func}, $arguments); 
+        }
+    }
+    $Foo = new Foo();
+    
+    $Foo->add(function(){
+        echo "Hello World";
+    },"helloWorldFunction");
+    
+    $Foo->add(function($parameterone){
+        echo $parameterone;
+    },"exampleFunction");
+    
+    $Foo->helloWorldFunction(); /*Output : Hello World
+    
+    $Foo->exampleFunction("Hello PHP"); /*Output : Hello PHP*/
+
+ ```
+ 
+ #### how to use closures to implement a Python-like decorator
+ 
+  ```php
+  
+  <?php
+
+/* 
+* An example showing how to use closures to implement a Python-like decorator 
+* pattern.
+*
+* My goal was that you should be able to decorate a function with any
+* other function, then call the decorated function directly: 
+*
+* Define function:         $foo = function($a, $b, $c, ...) {...}
+* Define decorator:        $decorator = function($func) {...}
+* Decorate it:             $foo = $decorator($foo)
+* Call it:                 $foo($a, $b, $c, ...)
+*
+* This example show an authentication decorator for a service, using a simple
+* mock session and mock service. 
+*/
+
+session_start();
+
+/* 
+* Define an example decorator. A decorator function should take the form:
+* $decorator = function($func) {
+*     return function() use $func) {
+*         // Do something, then call the decorated function when needed:
+*         $args = func_get_args($func);
+*         call_user_func_array($func, $args);
+*         // Do something else.
+*     };
+* };
+*/
+$authorise = function($func) {
+    return function() use ($func) {
+        if ($_SESSION['is_authorised'] == true) {
+            $args = func_get_args($func);
+            call_user_func_array($func, $args);
+        }
+        else {
+            echo "Access Denied";
+        }
+    };
+};
+
+/* 
+* Define a function to be decorated, in this example a mock service that
+* need to be authorised. 
+*/ 
+$service = function($foo) {
+    echo "Service returns: $foo";
+};
+
+/* 
+* Decorate it. Ensure you replace the origin function reference with the
+* decorated function; ie just $authorise($service) won't work, so do
+* $service = $authorise($service)
+*/
+$service = $authorise($service);
+
+/* 
+* Establish mock authorisation, call the service; should get 
+* 'Service returns: test 1'. 
+*/
+$_SESSION['is_authorised'] = true;
+$service('test 1');
+
+/* 
+* Remove mock authorisation, call the service; should get 'Access Denied'. 
+*/
+$_SESSION['is_authorised'] = false;
+$service('test 2');
+
+?>
+  
+  ```
+  
+  
+ #### Calling closures assigned to class properties as class methods
+ 
+  ```php
+  
+  <?php
+  
+  class foo {
+
+  public test;
+
+  public function __construct(){
+    $this->test = function($a) {
+      print "$a\n";
+    };
+  }
+
+  public function __call($method, $args){
+    if ( $this->{$method} instanceof Closure ) {
+      return call_user_func_array($this->{$method},$args);
+    } else {
+      return parent::__call($method, $args);
+    }
+  }
+}
+$f = new foo();
+$f->test();
+  
+  ```
 
 # Resources
  
