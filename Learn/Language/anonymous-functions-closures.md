@@ -15,6 +15,8 @@
   * [Type hinting closures as Callables](#type-hinting-closures-as-callables)
   * [Returning a reference from an anonymous function](#returning-a-reference-from-an-anonymous-function)
   * [Accessing private method of a class inside a Closure](#accessing-private-method-of-a-class-inside-a-Closure)
+  * [Closure::bindTo() example](#closurebindto-example)
+  * [Closure::bind() example](#closurebind-example)
 * [Tricks, tips and crazy things](#tricks-tips-and-crazy-things)
   * [Closure as a value of an associative array](#closure-as-a-value-of-an-associative-array)
   * [Immediatily invoking an anonimous function](#immediatily-invoking-an-anonimous-function)
@@ -74,6 +76,10 @@ If you try to call a closure **stored in an instance variable** as you would reg
 
 Closures have additional object oriented uses as well. PHP 5.4 brings new methods to the Closure class’ interface. Specifically, the new bind and bindTo methods can be used to bind to new objects for the closure to operate on. Furthemore since the Closure class has the __invoke method, they can be **type hinted as Callables** ([Example](#type-hinting-closures-as-callables)).
 
+The BindTo method of the Closure class Create and return a new anonymous function with the same body and bound variables as this one, but possibly with a different bound object and a new class scope. The “bound object” determines the value $this will have in the function body and the “class scope” represents a class which determines which private and protected members the anonymous function will be able to access. Namely, the members that will be visible are the same as if the anonymous function were a method of the class given as value of the newscope parameter ([Example](#closurebindto-example)). Static closures cannot have any bound object (the value of the parameter newthis should be NULL), but this function can nevertheless be used to change their class scope. Note: If you only want to duplicate the anonymous functions, you can use cloning instead.
+
+The Bind method of the Closure class duplicates a closure with a specific bound object and class scope.([Example](#closurebind-example)) 
+ 
  It is possible to use these functions func_num_args(), func_get_arg(), and func_get_args() from within a closure.
 
  You **cannot access an array element inside the use** keyword because it will give you an error  ([Example](#cant-access-array-element-inside-use-keyword)). Also you can't use the $this variable inside the use keyword ([Example](#cant-use-$this-in-use-keyword)).
@@ -405,6 +411,58 @@ $closure ();
 
 ```
 
+
+#### Closure::bind() example
+
+```php
+
+class A {
+    private static $sfoo = 1;
+    private $ifoo = 2;
+}
+$cl1 = static function() {
+    return A::$sfoo;
+};
+$cl2 = function() {
+    return $this->ifoo;
+};
+
+$bcl1 = Closure::bind($cl1, null, 'A');
+$bcl2 = Closure::bind($cl2, new A(), 'A');
+
+echo $bcl1(), "\n"; //outputs 1
+echo $bcl2(), "\n"; //outputs 2
+
+?>
+
+``` 
+
+####  Closure::bindTo() example
+
+```php
+
+<?php 
+
+class A {
+    function __construct($val) {
+        $this->val = $val;
+    }
+    function getClosure() {
+        //returns closure bound to this object and scope
+        return function() { return $this->val; };
+    }
+}
+
+$ob1 = new A(1);
+$ob2 = new A(2);
+
+$cl = $ob1->getClosure();
+echo $cl(), "\n"; //outputs 1
+
+$cl = $cl->bindTo($ob2);
+echo $cl(), "\n"; //outputs 2
+
+``` 
 
 # Tricks, tips and crazy things
 
