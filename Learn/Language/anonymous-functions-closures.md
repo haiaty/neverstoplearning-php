@@ -28,7 +28,7 @@
   * [Calling closures assigned to class properties as class methods](#calling-closures-assigned-to-class-properties-as-class-methods)
   * [check whether you're dealing with a closure specifically](#check-whether-youre-dealing-with-a-closure-specifically)
   * [Adding method on the fly to objects using the Closure::bind method](#adding-method-on-the-fly-to-objects-using-the-closurebind-method)
-  
+  * [validate whether or not a closure can be bound to a PHP object](#validate-whether-or-not-a-closure-can-be-bound-to-a-php-object)
 * [Resources](#resources)
 
 
@@ -810,6 +810,33 @@ $test->addMethod('when', function () {
 echo $test->when();
 
 ```
+
+#### validate whether or not a closure can be bound to a PHP object
+
+```php
+
+/**
+* @param \Closure $callable
+*
+* @return bool
+*/
+function isBindable(\Closure $callable)
+{
+    $bindable = false;
+
+    $reflectionFunction = new \ReflectionFunction($callable);
+    if (
+        $reflectionFunction->getClosureScopeClass() === null
+        || $reflectionFunction->getClosureThis() !== null
+    ) {
+        $bindable = true;
+    }
+
+    return $bindable;
+}
+
+```
+
 
 
 # Resources
