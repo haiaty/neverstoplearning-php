@@ -28,6 +28,7 @@
   * [Calling closures assigned to class properties as class methods](#calling-closures-assigned-to-class-properties-as-class-methods)
   * [check whether you're dealing with a closure specifically](#check-whether-youre-dealing-with-a-closure-specifically)
   * [Adding method on the fly to objects using the Closure::bind method](#adding-method-on-the-fly-to-objects-using-the-closurebind-method)
+  
 * [Resources](#resources)
 
 
