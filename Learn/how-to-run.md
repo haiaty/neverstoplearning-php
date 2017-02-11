@@ -7,7 +7,7 @@
 * [examples](#examples)
   * [Running PHP with web server](#running-php-with-web-server)
 * [how to](#how-to)
-  * [Install and configure Apache 2 and PHP-FPM on Ubuntu 14](#install-and-configure-apache-2-and-php-fpm-on-Ubuntu-14)
+  * [Install and configure Apache 2 and PHP-FPM on Ubuntu 14](#install-and-configure-apache-2-and-php-fpm-on-ubuntu-14)
 * [resources](#resources)
 
 
