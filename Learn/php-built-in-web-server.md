@@ -17,4 +17,4 @@ If a PHP file is given on the command line when the web server is started it is 
 
 # Resources
 
-* [PHP's built in web server documentation on PHP.net](#http://php.net/manual/en/features.commandline.webserver.php)
+* [PHP s built in web server documentation on PHP net](http://php.net/manual/en/features.commandline.webserver.php)
