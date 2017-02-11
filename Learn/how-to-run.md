@@ -7,6 +7,8 @@
 
 # With Web Server
 
+You have **two choices** for the method of connecting PHP to the server. For many servers **PHP has a direct module interface (also called SAPI)**. These servers include Apache, Microsoft Internet Information Server, Netscape and iPlanet servers. Many other servers have support for ISAPI, the Microsoft module interface (OmniHTTPd for example). If PHP **has no module support** for your web server, you can always **use it as a CGI or FastCGI processor**. 
+
 The Web server will handle the request coming from client and then will pass it to the PHP interpreter.
 
 The server should activate support for PHP and all files ending in .php should be handled by PHP. On most servers, this is the default extension for PHP files. If your server supports PHP, then you do not need to do anything. Just create your .php files, put them in your web directory and the server will automatically parse them for you. There is no need to compile anything nor do you need to install any extra tools.
@@ -29,7 +31,11 @@ Some smart people created an implementation of fastcgi that was specially design
 
 # From Cli (Command line interface)
 
-PHP should be installed on the server. When it is installed you will have the 'php' command in the shell. You can both execute the php in interactive mode from shell or execute a file having the '.php' extension.
+In this case, you need no server and no browser.PHP should be installed on the server. you need the command line executable. When it is installed you will have the 'php' command in the shell. You can both execute the php in interactive mode from shell or execute a file having the '.php' extension.
+
+# PHP for DESKTOP applications
+
+With PHP you can also write desktop GUI applications using the PHP-GTK extension. This is a completely different approach than writing web pages, as you do not output any HTML, but manage windows and objects within them.PHP-GTK is not included in the official PHP distribution.
 
 ---
 
