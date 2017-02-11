@@ -1,6 +1,7 @@
 
 * [knowledge aggregation](#with-web-server)
   * [with Web Server](#with-web-server)
+    * [PHP built in web server](#with-php-built-in-web-server)
     * [Apache web server](#with-apache-web-server)
   * [From Cli (Command line interface)](#from-cli-command-line-interface)
   * [PHP for desktop applications](#php-for-desktop-applications)
