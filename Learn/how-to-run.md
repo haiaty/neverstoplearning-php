@@ -20,6 +20,15 @@ The web server finds out that this file needs to be interpreted by PHP because y
 
 You have **two choices** for the method of connecting PHP to the web server. For many web servers **PHP has a direct module interface (also called SAPI)**. These web servers include Apache, Microsoft Internet Information Server, Netscape and iPlanet servers. Many other web servers have support for ISAPI, the Microsoft module interface (OmniHTTPd for example). If PHP **has no module support** for your web server, you can always **use it as a CGI or FastCGI processor**. 
 
+
+### with PHP built in web server
+
+As of PHP 5.4.0, the CLI SAPI provides a built-in web server. Note that this web server was designed to aid application development. It may also be useful for testing purposes or for application demonstrations that are run in controlled environments. It is not intended to be a full-featured web server. It should not be used on a public network.
+
+For more information about it see here: [PHP's built in web server](#Learn/php-built-in-web-server.md)
+
+
+
 ### with Apache Web server
 
 The traditional way is to use Apache’s mod_php. Mod_php attaches PHP to Apache itself, but Apache does a very bad job of managing it. You’ll suffer from severe memory problems as soon as you get any kind of real traffic.
