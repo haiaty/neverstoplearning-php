@@ -32,7 +32,7 @@
 
 # Anonymous functions/closures
 
-Anonymous functions (someone call them Lambda functions), also known as closures (in PHP), allow the creation of functions which have **no specified name**.They were introduced in PHP 5.3.Because the function has no name, you can’t call it like a regular function. Instead you must either **assign it to a variable** ([Example](#anonymous-function-as-value-of-variables)) (PHP automatically converts such expressions into instances of the **Closure internal class**) or **pass it to another function as an argument (Callback)** ([Example](#anonymous-function-as-a-callback)). 
+Anonymous functions (someone call them Lambda functions), also known as closures (in PHP), allow the creation of functions which have **no specified name**.They were introduced in PHP 5.3.Because the function has no name, you can’t call it like a regular function. Instead you must either **assign it to a variable** ([Example](#anonymous-function-as-value-of-variables)) (PHP automatically converts such expressions into instances of the **Closure internal class**) or **pass it to another function as an argument (Callback)** ([Example](#anonymous-function-as-a-callback)).
 
 The difference between an anonymous function and a closure is basically that the closure are anonymous functions that have acces to the parent scope using the use keyword. This is why PHP treat anonymous functions as Closure objects. In fact anonymous functions are implemented using the [Closure class](http://www.php.net//manual/en/class.closure.php). So if you want you can type hint it as Closure type (If you are using namespaces, make sure you give a fully qualified namespace.).
 
@@ -44,27 +44,27 @@ The syntax for closures is:
 
 function & (parameters) use (lexical vars) { body }
 
-//The & is optional and indicates that the function should return a reference. 
-//The use followed by the parentheses is optional and 
+//The & is optional and indicates that the function should return a reference.
+//The use followed by the parentheses is optional and
 //indicates that several variables from the current scope should be imported into the closure.
 
 ```
 
 Closures can accept **regular arguments** ([Example](#closures-accepting-regular-parameters)).
 
-A closure encapsulates its scope, meaning that **it has no access to the scope in which it is defined or executed**. 
+A closure encapsulates its scope, meaning that **it has no access to the scope in which it is defined or executed**.
 
- The parent scope of a closure is the function in which the closure **was declared (not necessarily the function it was called from)**. 
+ The parent scope of a closure is the function in which the closure **was declared (not necessarily the function it was called from)**.
 
 It is, however, possible **to inherit variables from the parent scope (where the closure is defined) into the closure with the use keyword** ([Example](#inherit-variables-from-the-parent-scope-into-the-closure with the use keyword)). Inherited variable's value is from when the function is defined, **not when called** ([Example](#inherited-variables-value-is-from-when-the-function-is-defined-not-when-called)). This inherits the variables **by-value**, that is, a copy is made available inside the closure using its original name. If you want you can inherit it by-reference ([Example](#inheriting-variable-from-parent-scope-by-reference)), but remenber that if you inherit it from reference then if the parent scope changes its value, that change **will be reflected in the closure** ([Example](#changes-on-variables-inherited-by-reference-are-reflected-inside-the-closure)). From PHP 7.1, these variables may not include superglobals, $this, or variables with the same name as a parameter.
 
 You can use a closures in itself **via reference** ([Example](#using-closure-in-itself-via-reference)).
 
-You can **return a Closure from a function call** ([Example](#closure-returned-from-function-call)). 
+You can **return a Closure from a function call** ([Example](#closure-returned-from-function-call)).
 
 You can **put a closure as a value of an associative array** and call it using array syntax followed by parenthesis. You cannot do the same with the array assignment operator. ([Example](#closure-as-a-value-of-an-associative-array))
 
-As of PHP7, you can **immediately execute anonymous functions** ([Example](#immediatily-invoking-an-anonimous-function)). 
+As of PHP7, you can **immediately execute anonymous functions** ([Example](#immediatily-invoking-an-anonimous-function)).
 
 As of PHP 5.4.0 when declared in the context of a class, **the current class is automatically bound to it, making $this available inside of the function's scope** ([Example](#closure-declared-in-the-context-of-a-class)). If this automatic binding of the current class is not wanted, then static anonymous functions may be used instead. As of PHP 5.4, anonymous functions may be declared statically ([Example](#static-closure-declaration)). **This prevents them from having the current class automatically bound to them**. Objects may also **not be bound to them at runtime** ([Example](#attempting-to-bind-an-object-to-a-static-anonymous-function)). PHP 5.4 now allows accessing private and protected members of an object if it's passed into an anymous function ([Example](#accessing-private-method-of-a-class-inside-a-Closure))
 
@@ -73,12 +73,15 @@ If you try to call a closure **stored in an instance variable** as you would reg
 Closures have additional object oriented uses as well. PHP 5.4 brings new methods to the Closure class’ interface. Specifically, the new bind and bindTo methods can be used to bind to new objects for the closure to operate on. Furthemore since the Closure class has the __invoke method, they can be **type hinted as Callables** ([Example](#type-hinting-closures-as-callables)).
 
  It is possible to use these functions func_num_args(), func_get_arg(), and func_get_args() from within a closure.
- 
+
  You **cannot access an array element inside the use** keyword because it will give you an error  ([Example](#cant-access-array-element-inside-use-keyword)). Also you can't use the $this variable inside the use keyword ([Example](#cant-use-$this-in-use-keyword)).
- 
+
 Anonymous functions **can return references** just like named functions can. Simply use the & the same way you would for a named function. right after the `function` keyword (and right before the nonexistent name) ([Example](#returning-a-reference-from-an-anonymous-function)).
 
 You can't **serialize a  PHP Closure object**. If you try  you get a very specific error message from the PHP Runtime: 'Uncaught exception 'Exception' with message 'Serialization of 'Closure' is not allowed''. If you need to serialize a closure try to use this library [PHP SuperClosure](https://github.com/jeremeamia/super_closure)
+
+After you have assigned the cloure to a variable, let us suppose a variable called $lambda,  you can call it or using the name of the variable and () (in this case $lambda())or you can use the functions call_user_func($lambda) and call_user_func_array ($lambda, array ());
+
 
 #### Common misconceptions
 
@@ -94,38 +97,38 @@ PHP's notion of scope is quite different than the notion of scope other language
 
 
  ```php
- 
+
  <?php
- 
+
 $example = function ($arg) {
    echo $arg;
 };
 $example("hello");
 
 //prints 'hello'
- 
+
  ```
 
 #### Anonymous function as a callback
 
  ```php
- 
+
  <?php
- 
+
 echo preg_replace_callback('~-([a-z])~', function ($match) {
     return strtoupper($match[1]);
 }, 'hello-world');
 
 // outputs helloWorld
 ?>
- 
- 
+
+
  ```
- 
+
 #### Anonymous function as value of variables
 
  ```php
- 
+
 <?php
 
 $greet = function($name)
@@ -140,7 +143,7 @@ $greet('PHP');
 
 
 ?>
- 
+
  ```
 
 #### inherit variables from the parent scope into the closure with the use keyword
@@ -148,27 +151,27 @@ $greet('PHP');
 
  ```php
  <?php
- 
+
  $var = 'World';
- 
- 
+
+
  $closure = function () use ($var) {
- 
+
  echo "Hello {$var}" ;
- 
+
  };
- 
+
  $closure(); // "Hello World"
- 
+
  ```
- 
+
 #### Using closure in itself via reference
- 
- 
+
+
  ```php
-  
+
  <?php
- 
+
 $deleteDirectory = null;
 
 $deleteDirectory = function($path) use (&$deleteDirectory) {
@@ -187,35 +190,35 @@ $deleteDirectory = function($path) use (&$deleteDirectory) {
 };
 
 $deleteDirectory("path/to/directoy");
- 
- 
+
+
  ```
- 
+
 #### Inheriting variable from parent scope by reference
- 
- 
+
+
  ```php
-  
+
  <?php
- 
+
 $message = 'hello';
 
 $example = function () use (&$message) {
     var_dump($message);
 };
 $example();
- 
+
  //prints 'hello'
- 
+
  ```
- 
-#### Changes on variables inherited by reference are reflected inside the closure 
- 
- 
+
+#### Changes on variables inherited by reference are reflected inside the closure
+
+
  ```php
-  
+
  <?php
- 
+
 $message = 'hello';
 
 $example = function () use (&$message) {
@@ -228,26 +231,26 @@ $message = 'changed from parent Scope!';
 $example();  //prints 'changed from parent Scope!'
 
  ```
- 
-  
+
+
 #### closure declared in the context of a class
- 
- 
+
+
  ```php
-  
+
  <?php
 
 class Foo {
-    
+
     private $color;
 
     function __construct($color) {
         $this->color = $color;
     }
-    
+
      public function getProperty() {
          return function() {
-           echo ucfirst($this->color); 
+           echo ucfirst($this->color);
          };
      }
 }// end of Class Foo
@@ -259,10 +262,10 @@ $func = $a->getProperty();
 $func(); //outputs 'Red'
 
  ```
- 
+
 #### closure returned from function call
- 
- 
+
+
  ```php
 <?php
 
@@ -277,11 +280,11 @@ $a = say('Hi');
 $a('World'); //outputs 'Hi World';
 
  ```
- 
+
 
 #### static closure declaration
- 
- 
+
+
  ```php
 <?php
 
@@ -293,11 +296,11 @@ $d = $b->bindTo(new StdClass());
 $d(); //get a warning, a notice and null because you canot bind an static closure to an object
 
  ```
-  
+
 
 #### Attempting to bind an object to a static anonymous function
- 
- 
+
+
  ```php
 <?php
 
@@ -308,12 +311,12 @@ $d = $b->bindTo(new StdClass());
 $d(); //get a warning, a notice and null because you canot bind an static closure to an object
 
  ```
- 
+
 
 
 ####  type hinting closures as Callables
- 
- 
+
+
  ```php
 <?php
 
@@ -332,8 +335,8 @@ echo $a['crazy_func']()('Hello')('Jhon'); //outputs 'Hello Jhon from Crazy func!
  ```
 
 #### Returning a reference from an anonymous function
- 
- 
+
+
  ```php
 <?php
 
@@ -342,24 +345,24 @@ $value = 0;
 $fn = function &() use (&$value) { return $value; };
 
  $x =& $fn();
- 
+
  var_dump($x, $value);        // 'int(0)', 'int(0)'
- 
+
  ++$x;
-    
+
  var_dump($x, $value);        // 'int(1)', 'int(1)'
-    
+
  ```
- 
+
 #### Accessing private method of a class inside a Closure
- 
- ``` php 
- 
+
+ ``` php
+
  <?php
- 
+
  class Scope
 {
-   
+
     private $property = 'default';
 
     public function run()
@@ -378,14 +381,14 @@ $scope = new Scope();
 $scope->run();
 
 //outputs 'changed'
- 
+
  ```
- 
+
 # Tricks, tips and crazy things
 
 #### closure as a value of an associative array
- 
- 
+
+
  ```php
 <?php
 
@@ -402,10 +405,10 @@ $array = Array(
 );
 
  ```
- 
+
 #### Immediatily invoking an anonimous function
- 
- 
+
+
  ```php
 <?php
 
@@ -420,12 +423,12 @@ $array = Array(
 
  ```
 
-#### Inherited variable's value is from when the function is defined, not when called 
- 
+#### Inherited variable's value is from when the function is defined, not when called
+
  ```php
-  
+
  <?php
-       
+
 $message = 'hello';
 
 $example = function () use ($message) {
@@ -434,13 +437,13 @@ $example = function () use ($message) {
 
 $message = 'world';
 $example();
- 
+
  //prints 'hello'
- 
+
  ```
- 
+
 #### using anonymous function to change a method at runtime
- 
+
 
  ```php
 <?php
@@ -448,14 +451,14 @@ $example();
 class t
 {
     var $num;
-    
+
     var $dynamic_function;
-    
+
     public function dynamic_function()
     {
-        $func = $this->dynamic_function; 
-        
-        $func($this); 
+        $func = $this->dynamic_function;
+
+        $func($this);
     }
 }
 
@@ -473,13 +476,13 @@ $p->dynamic_function(); // CALL YOUR DYNAMIC FUNCTION
 $p->dynamic_function = function($this_ref) // NEW DYNAMIC fUNCRION
 {
     echo $this_ref->num.'<br />';
-    
+
     $this_ref->num *= 3;
 };
 
 $p->dynamic_function(); // CALL DYNAMIC FUNCTION
 
-echo $p->num; 
+echo $p->num;
 
 //outputs
 5
@@ -487,17 +490,17 @@ echo $p->num;
 18
 
  ```
- 
-  
+
+
 #### can't access array element inside use keyword
- 
- 
+
+
  ```php
 <?php
 
 $fruits = ['apples', 'oranges'];
 $example = function () use ($fruits[0]) {
-    echo $fruits[0]; 
+    echo $fruits[0];
 };
 $example(); //gives "Parse error: syntax error, unexpected '[', expecting ',' or ')' ... "
 
@@ -521,11 +524,11 @@ $example = function () use ($fruit) {
 $example();
 
  ```
- 
- 
+
+
 #### How to call a closure stored in a instance variable
- 
- 
+
+
  ```php
 <?php
 
@@ -545,10 +548,10 @@ $func();
 call_user_func($obj->func);
 
  ```
- 
-#### $this variable is undefined inside static function 
- 
- 
+
+#### $this variable is undefined inside static function
+
+
  ```php
 <?php
 
@@ -566,12 +569,12 @@ new class {
 //NULL
 
  ```
- 
-#### Adding public functions to class using closures 
- 
- 
+
+#### Adding public functions to class using closures
+
+
  ```php
- 
+
  <?php
 /*
     (string) $name Name of the function that you will add to class.
@@ -585,37 +588,37 @@ new class {
             $this->{$name} = $func;
         }
         public function __call($func,$arguments){
-            call_user_func_array($this->{$func}, $arguments); 
+            call_user_func_array($this->{$func}, $arguments);
         }
     }
     $Foo = new Foo();
-    
+
     $Foo->add(function(){
         echo "Hello World";
     },"helloWorldFunction");
-    
+
     $Foo->add(function($parameterone){
         echo $parameterone;
     },"exampleFunction");
-    
+
     $Foo->helloWorldFunction(); /*Output : Hello World
-    
+
     $Foo->exampleFunction("Hello PHP"); /*Output : Hello PHP*/
 
  ```
- 
+
 #### how to use closures to implement a Python-like decorator
- 
+
   ```php
-  
+
   <?php
 
-/* 
-* An example showing how to use closures to implement a Python-like decorator 
+/*
+* An example showing how to use closures to implement a Python-like decorator
 * pattern.
 *
 * My goal was that you should be able to decorate a function with any
-* other function, then call the decorated function directly: 
+* other function, then call the decorated function directly:
 *
 * Define function:         $foo = function($a, $b, $c, ...) {...}
 * Define decorator:        $decorator = function($func) {...}
@@ -623,12 +626,12 @@ new class {
 * Call it:                 $foo($a, $b, $c, ...)
 *
 * This example show an authentication decorator for a service, using a simple
-* mock session and mock service. 
+* mock session and mock service.
 */
 
 session_start();
 
-/* 
+/*
 * Define an example decorator. A decorator function should take the form:
 * $decorator = function($func) {
 *     return function() use $func) {
@@ -651,45 +654,45 @@ $authorise = function($func) {
     };
 };
 
-/* 
+/*
 * Define a function to be decorated, in this example a mock service that
-* need to be authorised. 
-*/ 
+* need to be authorised.
+*/
 $service = function($foo) {
     echo "Service returns: $foo";
 };
 
-/* 
+/*
 * Decorate it. Ensure you replace the origin function reference with the
 * decorated function; ie just $authorise($service) won't work, so do
 * $service = $authorise($service)
 */
 $service = $authorise($service);
 
-/* 
-* Establish mock authorisation, call the service; should get 
-* 'Service returns: test 1'. 
+/*
+* Establish mock authorisation, call the service; should get
+* 'Service returns: test 1'.
 */
 $_SESSION['is_authorised'] = true;
 $service('test 1');
 
-/* 
-* Remove mock authorisation, call the service; should get 'Access Denied'. 
+/*
+* Remove mock authorisation, call the service; should get 'Access Denied'.
 */
 $_SESSION['is_authorised'] = false;
 $service('test 2');
 
 ?>
-  
+
   ```
-  
-  
+
+
 #### Calling closures assigned to class properties as class methods
- 
+
   ```php
-  
+
   <?php
-  
+
   class foo {
 
   public test;
@@ -710,12 +713,12 @@ $service('test 2');
 }
 $f = new foo();
 $f->test();
-  
+
   ```
-  
+
 #### can't use $this in use keyword
- 
- 
+
+
 ```php
 <?php
 $func = function() use ($this) {
@@ -730,7 +733,7 @@ $func = function() use ($this) {
 ```
 
 #### check whether you're dealing with a closure specifically
- 
+
 ```php
 <?php
 
@@ -741,15 +744,10 @@ $isAClosure = is_callable($thing) && is_object($thing);
 ```
 
 # Resources
- 
+
  * [Anonymous functions from PHP.net ](http://it2.php.net/manual/en/functions.anonymous.php)
  * [Closures from PHP.net ](http://www.php.net//manual/en/class.closure.php)
  * [Question about closures from an article on toptal.com](https://www.toptal.com/php)
  * [What are PHP Lambdas and Closures?] (http://culttt.com/2013/03/25/what-are-php-lambdas-and-closures/)
  * [Functional PHP] (https://leanpub.com/functional-php/read)
  * [https://wiki.php.net/rfc/closures](https://wiki.php.net/rfc/closures)
- 
-
- 
-
-
