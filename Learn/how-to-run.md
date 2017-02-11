@@ -1,7 +1,13 @@
 
-* [summary](#with-web-server)
+* [knowledge aggregation](#with-web-server)
+  * [with Web Server](#with-web-server)
+    * [Apache web server](#with-apache-web-server)
+  * [From Cli (Command line interface)](#from-cli-command-line-interface)
+  * [PHP for desktop applications](#php-for-desktop-applications)
 * [examples](#examples)
+  * [Running PHP with web server](#running-php-with-web-server)
 * [how to](#how-to)
+  * [Install and configure Apache 2 and PHP-FPM on Ubuntu 14](#install-and-configure-apache-2-and-php-fpm-on-Ubuntu-14)
 * [resources](#resources)
 
 
@@ -33,7 +39,7 @@ Some smart people created an implementation of fastcgi that was specially design
 
 In this case, you need no server and no browser.PHP should be installed on the server. you need the command line executable. When it is installed you will have the 'php' command in the shell. You can both execute the php in interactive mode from shell or execute a file having the '.php' extension.
 
-# PHP for DESKTOP applications
+# PHP for desktop applications
 
 With PHP you can also write desktop GUI applications using the PHP-GTK extension. This is a completely different approach than writing web pages, as you do not output any HTML, but manage windows and objects within them.PHP-GTK is not included in the official PHP distribution.
 
@@ -41,7 +47,7 @@ With PHP you can also write desktop GUI applications using the PHP-GTK extension
 
 # Examples
 
-#### Using web server
+#### Running PHP with web server
 
 given this hello.php file:
 
