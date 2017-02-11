@@ -82,6 +82,9 @@ You can't **serialize a  PHP Closure object**. If you try  you get a very specif
 
 After you have assigned the cloure to a variable, let us suppose a variable called $lambda,  you can call it or using the name of the variable and () (in this case $lambda())or you can use the functions call_user_func($lambda) and call_user_func_array ($lambda, array ());
 
+Since closures are anonymous, they do not appear in reflection.
+
+However, a new method was added to the ReflectionMethod and ReflectionFunction classes: getClosure. This method returns a dynamically created closure for the specified function. ([Example](#reflection-class-method-getClosure))
 
 #### Common misconceptions
 
@@ -383,6 +386,23 @@ $scope->run();
 //outputs 'changed'
 
  ```
+
+#### Reflection class method getClosure
+
+```php
+
+class Example {
+  static function printer () { echo "Hello World!\n"; }
+}
+ 
+$class = new ReflectionClass ('Example');
+$method = $class->getMethod ('printer');
+$closure = $method->getClosure ();
+$closure ();
+
+
+```
+
 
 # Tricks, tips and crazy things
 
