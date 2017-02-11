@@ -1,5 +1,9 @@
 
 
+* [knowledge aggregation](#phps-built-in-web-server)
+
+
+# PHP's Built in web server
 
 The web server runs a only one **single-threaded process**, so PHP applications will stall if a request is blocked.
 
