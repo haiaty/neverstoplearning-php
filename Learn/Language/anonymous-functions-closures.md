@@ -17,6 +17,7 @@
   * [Accessing private method of a class inside a Closure](#accessing-private-method-of-a-class-inside-a-Closure)
   * [Closure::bindTo() example](#closurebindto-example)
   * [Closure::bind() example](#closurebind-example)
+  * [Closure call method usage example](#closure-call-method-usage-example)
 * [Tricks, tips and crazy things](#tricks-tips-and-crazy-things)
   * [Closure as a value of an associative array](#closure-as-a-value-of-an-associative-array)
   * [Immediatily invoking an anonimous function](#immediatily-invoking-an-anonimous-function)
@@ -80,6 +81,8 @@ Closures have additional object oriented uses as well. PHP 5.4 brings new method
 The BindTo method of the Closure class Create and return a new anonymous function with the same body and bound variables as this one, but possibly with a different bound object and a new class scope. The “bound object” determines the value $this will have in the function body and the “class scope” represents a class which determines which private and protected members the anonymous function will be able to access. Namely, the members that will be visible are the same as if the anonymous function were a method of the class given as value of the newscope parameter ([Example](#closurebindto-example)). Static closures cannot have any bound object (the value of the parameter newthis should be NULL), but this function can nevertheless be used to change their class scope. Note: If you only want to duplicate the anonymous functions, you can use cloning instead.
 
 The Bind method of the Closure class duplicates a closure with a specific bound object and class scope.([Example](#closurebind-example)) 
+
+The Call method binds the closure to an speific objct, calls the closure and returns the return of the closure. ([Example]((#closure-call-method-usage-example)))
  
  It is possible to use these functions func_num_args(), func_get_arg(), and func_get_args() from within a closure.
 
@@ -462,6 +465,35 @@ echo $cl(), "\n"; //outputs 1
 
 $cl = $cl->bindTo($ob2);
 echo $cl(), "\n"; //outputs 2
+
+``` 
+
+####  Closure call method usage example
+
+```php
+
+<?php 
+
+class Value {
+    protected $value;
+
+    public function __construct($value) {
+        $this->value = $value;
+    }
+
+    public function getValue() {
+        return $this->value;
+    }
+}
+
+$three = new Value(3);
+$four = new Value(4);
+
+$closure = function ($delta) { var_dump($this->getValue() + $delta); };
+
+$closure->call($three, 4); //outputs int(7)
+
+$closure->call($four, 4);  //outputs int(8)
 
 ``` 
 
