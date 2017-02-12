@@ -31,6 +31,7 @@
   * [check whether you're dealing with a closure specifically](#check-whether-youre-dealing-with-a-closure-specifically)
   * [Adding method on the fly to objects using the Closure::bind method](#adding-method-on-the-fly-to-objects-using-the-closurebind-method)
   * [validate whether or not a closure can be bound to a PHP object](#validate-whether-or-not-a-closure-can-be-bound-to-a-php-object)
+  * [using Closure BindTo method to create a small template engine](#using-closure-bindto-method-to-create-a-small-template-engine)
 * [Resources](#resources)
 
 
@@ -892,6 +893,51 @@ function isBindable(\Closure $callable)
 
     return $bindable;
 }
+
+```
+
+#### using Closure BindTo method to create a small template engine
+
+```php
+
+class Article{
+    private $title = "This is an article";
+}
+
+class Post{
+    private $title = "This is a post";
+}
+
+class Template{
+
+    function render($context, $tpl){
+
+        $closure = function($tpl){
+            ob_start();
+            include $tpl;
+            return ob_end_flush();
+        };
+
+        $closure = $closure->bindTo($context, $context);
+        $closure($tpl);
+
+    }
+
+}
+
+$art = new Article();
+$post = new Post();
+$template = new Template();
+
+$template->render($art, 'tpl.php');
+$template->render($post, 'tpl.php');
+?>
+
+
+#############
+tpl.php
+############
+<h1><?php echo $this->title;?></h1>
 
 ```
 
