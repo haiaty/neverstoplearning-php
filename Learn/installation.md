@@ -29,6 +29,9 @@ PHP 7.1 can be installed using Ondřej Surý's PPA:
 
 ```
 sudo add-apt-repository ppa:ondrej/php
+#If you get a command not found error for add-apt-repository, you can install it from:
+#sudo apt-get install software-properties-common python-software-properties
+
 sudo apt-get update
 sudo apt-get install php7.1
 
