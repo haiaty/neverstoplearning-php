@@ -3,9 +3,9 @@
 * [knowledge aggregation](#installation)
   * [On unix]
       * [Ubuntu 14 - 16](#ubuntu-1404---1610)
-        * [PHP 7.1](#php-71-ubuntu)
+        * [PHP 7.1](#php-71--ubuntu)
       * [Centos / RHEL 6.8](#centos--rhel-68)
-        * [PHP 7.1](#php-71-centos)
+        * [PHP 7.1](#php-71--centos)
 * [Resources](#resources)
 
 # Installation
