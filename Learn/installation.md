@@ -15,3 +15,53 @@ with various options, like which extensions will be enabled. If you decide to ch
 When PHP is configured, you are ready to build the module and/or executables. The command make should take care of this.
 
 Note that unless told otherwise, 'make install' will also install PEAR, various PHP tools such as phpize, install the PHP CLI, and more.
+
+##### Ubuntu 14.04 - 16.10
+
+###### PHP 7.1
+
+PHP 7.1 can be installed using Ondřej Surý's PPA:
+
+```
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+sudo apt-get install php7.1
+
+```
+
+---
+
+##### CentOS / RHEL 6.8
+
+First, you'll want to ensure that the EPEL repository is configured (and enable the optional channel for RHEL too)
+
+```
+wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+wget http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+rpm -Uvh remi-release-7.rpm epel-release-latest-7.noarch.rpm
+
+# For RHEL, run this command as well:
+subscription-manager repos --enable=rhel-7-server-optional-rpms
+
+```
+Next we enable the remi-php71 repository:
+
+```
+yum install yum-utils
+yum-config-manager --enable remi-php71
+
+```
+
+and install php 7.1
+
+```
+yum install php71
+
+```
+
+
+# Resources
+
+[Installing PHP 7.1](https://www.colinodell.com/blog/2016-12/installing-php-7-1)
+
+
