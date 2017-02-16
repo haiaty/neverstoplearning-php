@@ -12,7 +12,7 @@
  
 # Useful tools
 
-* [PHP 7 Compatibility Checker](#https://github.com/sstalle/php7cc)
+* [PHP 7 Compatibility Checker](https://github.com/sstalle/php7cc)
  
 # Presentations and conferences
  
