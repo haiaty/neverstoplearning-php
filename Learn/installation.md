@@ -1,7 +1,12 @@
 
 
 * [knowledge aggregation](#installation)
-
+  * [On unix]
+      * [Ubuntu 14 - 16](#ubuntu-1404---1610)
+        * [PHP 7.1](#php-71-ubuntu)
+      * [Centos / RHEL 6.8](#centos--rhel-68)
+        * [PHP 7.1](#php-71-centos)
+* [Resources](#resources)
 
 # Installation
 
@@ -18,7 +23,7 @@ Note that unless told otherwise, 'make install' will also install PEAR, various 
 
 ##### Ubuntu 14.04 - 16.10
 
-###### PHP 7.1
+###### PHP 7.1 - ubuntu
 
 PHP 7.1 can be installed using Ondřej Surý's PPA:
 
@@ -32,6 +37,8 @@ sudo apt-get install php7.1
 ---
 
 ##### CentOS / RHEL 6.8
+
+###### PHP 7.1 - centos
 
 First, you'll want to ensure that the EPEL repository is configured (and enable the optional channel for RHEL too)
 
