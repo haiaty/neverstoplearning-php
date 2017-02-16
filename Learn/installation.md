@@ -1,7 +1,7 @@
 
 
 * [knowledge aggregation](#installation)
-  * [On unix]
+  * On unix
       * [Ubuntu 14 - 16](#ubuntu-1404---1610)
         * [PHP 7.1](#php-71--ubuntu)
       * [Centos / RHEL 6.8](#centos--rhel-68)
