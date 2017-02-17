@@ -10,6 +10,10 @@
 
 # Installation
 
+Before installing PHP, first you should have clear for what you will use it. will you use it for web development? will you use it for cli programs or for desktop applications?
+
+Then, when you have clear that, you need to know [how to run](https://github.com/haiaty/neverstoplearning-php/blob/master/Learn/how-to-run.md) it in order to achieve the purpose for what you will be using it. 
+
 ## On Unix
 
 There are several ways to install PHP for the Unix platform, either with a compile and configure process, or through various pre-packaged methods.Many Unix like systems have some sort of package installation system. This can assist in setting up a standard configuration, but if you need to have a different set of features you may need to build PHP.
