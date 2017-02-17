@@ -7,8 +7,6 @@
   * [PHP for desktop applications](#php-for-desktop-applications)
 * [examples](#examples)
   * [Running PHP with web server](#running-php-with-web-server)
-* [how to](#how-to)
-  * [Install and configure Apache 2 and PHP-FPM on Ubuntu 14](#install-and-configure-apache-2-and-php-fpm-on-ubuntu-14)
 * [resources](#resources)
 
 
@@ -87,46 +85,10 @@ Use your browser to access the file with your web server's URL, ending with the 
 
 ---
 
-# How to
 
-### Install and configure Apache 2 and PHP-FPM on Ubuntu 14
-
-You can install PHP-FPM and Apache on Ubuntu 14.04 by running these command in your terminal:
-
-```
-sudo apt-get install apache2-mpm-event libapache2-mod-fastcgi php5-fpm
-sudo a2enmod actions alias fastcgi
-
-```
-
-Note that we must use apache2-mpm-event (or apache2-mpm-worker), not apache2-mpm-prefork or apache2-mpm-threaded.
-
-Next, we’ll configure our Apache virtualhost to route PHP requests to the PHP-FPM process. Place the following in your Apache configuration file (in Ubuntu 14.04 the default one is /etc/apache2/sites-available/000-default.conf).
-
-```
-<Directory />
-    Require all granted
-</Directory>
-<VirtualHost *:80>
-    Action php5-fcgi /php5-fcgi
-    Alias /php5-fcgi /usr/lib/cgi-bin/php5-fcgi
-    FastCgiExternalServer /usr/lib/cgi-bin/php5-fcgi -socket /var/run/php5-fpm.sock -idle-timeout 120 -pass-header Authorization
-    <FilesMatch "\.php$">
-        SetHandler  php5-fcgi
-    </FilesMatch>
-</VirtualHost>
-```
-
-Finally, restart Apache and the FPM process:
-
-```
-sudo service apache2 restart && sudo service php5-fpm restart
-
-```
 
 # Resources
 
 * [Simple tutorial from php.net](http://php.net/manual/en/tutorial.firstpage.php)
 * [Serving PHP from Apache using PHP-FPM](https://phpbestpractices.org/#serving-php)
-* [Installing Apache + MOD_FASTCGI + PHP-FPM on ubuntu server](https://alexcabal.com/installing-apache-mod_fastcgi-php-fpm-on-ubuntu-server-maverick/)
 * [The perrfect lamp stack](http://voidweb.com/2010/07/the-perfect-lamp-stack-apache2-fastcgi-php-fpm-apc/)
