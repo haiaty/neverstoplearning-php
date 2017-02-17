@@ -27,13 +27,17 @@ Note that unless told otherwise, 'make install' will also install PEAR, various 
 
 PHP 7.1 can be installed using Ondřej Surý's PPA:
 
-```
+```shell
 sudo add-apt-repository ppa:ondrej/php
 #If you get a command not found error for add-apt-repository, you can install it from:
 #sudo apt-get install software-properties-common python-software-properties
 
 sudo apt-get update
-sudo apt-get install php7.1
+#this will create the folder /etc/php/7.1 with inside three folders apache2/, cli/, mods-available
+sudo apt-get install php7.1 
+
+#if you need to install php-fpm do
+sudo apt-get install php7.1-fpm
 
 ```
 
