@@ -4,6 +4,7 @@
   * On unix
       * [Ubuntu 14 - 16](#ubuntu-1404---1610)
         * [PHP 7.1](#php-71---ubuntu)
+        * [Install and configure Apache 2 and PHP-FPM on Ubuntu 14](#install-and-configure-apache-2-and-php-fpm-on-ubuntu-14)
       * [Centos / RHEL 6.8](#centos--rhel-68)
         * [PHP 7.1](#php-71---centos)
 * [Resources](#resources)
@@ -14,9 +15,7 @@ Before installing PHP, first you should have clear for what you will use it. wil
 
 Then, when you have clear that, you need to know [how to run](https://github.com/haiaty/neverstoplearning-php/blob/master/Learn/how-to-run.md) it in order to achieve the purpose for what you will be using it. 
 
-If you choose if for web development, then you should choose wich web server you will use and how it will connect to php.
-
-
+If you choose if for web development, then you should choose wich web server you will use and how it will connect to php. would it be trough a module, as fastcgi or with php-fpm?
 
 ## On Unix
 
@@ -28,6 +27,7 @@ with various options, like which extensions will be enabled. If you decide to ch
 When PHP is configured, you are ready to build the module and/or executables. The command make should take care of this.
 
 Note that unless told otherwise, 'make install' will also install PEAR, various PHP tools such as phpize, install the PHP CLI, and more.
+
 
 ##### Ubuntu 14.04 - 16.10
 
@@ -46,6 +46,41 @@ sudo apt-get install php7.1
 
 #if you need to install php-fpm do
 sudo apt-get install php7.1-fpm
+
+```
+
+### Install and configure Apache 2 and PHP-FPM on Ubuntu 14
+
+You can install PHP-FPM and Apache on Ubuntu 14.04 by running these command in your terminal:
+
+```
+sudo apt-get install apache2-mpm-event libapache2-mod-fastcgi php5-fpm
+sudo a2enmod actions alias fastcgi
+
+```
+
+Note that we must use apache2-mpm-event (or apache2-mpm-worker), not apache2-mpm-prefork or apache2-mpm-threaded.
+
+Next, we’ll configure our Apache virtualhost to route PHP requests to the PHP-FPM process. Place the following in your Apache configuration file (in Ubuntu 14.04 the default one is /etc/apache2/sites-available/000-default.conf).
+
+```
+<Directory />
+    Require all granted
+</Directory>
+<VirtualHost *:80>
+    Action php5-fcgi /php5-fcgi
+    Alias /php5-fcgi /usr/lib/cgi-bin/php5-fcgi
+    FastCgiExternalServer /usr/lib/cgi-bin/php5-fcgi -socket /var/run/php5-fpm.sock -idle-timeout 120 -pass-header Authorization
+    <FilesMatch "\.php$">
+        SetHandler  php5-fcgi
+    </FilesMatch>
+</VirtualHost>
+```
+
+Finally, restart Apache and the FPM process:
+
+```
+sudo service apache2 restart && sudo service php5-fpm restart
 
 ```
 
