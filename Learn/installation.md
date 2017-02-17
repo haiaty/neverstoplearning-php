@@ -119,6 +119,7 @@ yum install php71
 
 # Resources
 
-[Installing PHP 7.1](https://www.colinodell.com/blog/2016-12/installing-php-7-1)
+* [Installing PHP 7.1](https://www.colinodell.com/blog/2016-12/installing-php-7-1)
+* [Installing Apache + MOD_FASTCGI + PHP-FPM on ubuntu server](https://alexcabal.com/installing-apache-mod_fastcgi-php-fpm-on-ubuntu-server-maverick/)
 
 
