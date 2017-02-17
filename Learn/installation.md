@@ -3,10 +3,10 @@
 * [knowledge aggregation](#installation)
   * On unix
       * [Ubuntu 14 - 16](#ubuntu-1404---1610)
-        * [PHP 7.1](#php-71---ubuntu)
+        * [Only PHP 7.1](#php-71---ubuntu)
         * [Install and configure Apache 2 and PHP-FPM on Ubuntu 14](#install-and-configure-apache-2-and-php-fpm-on-ubuntu-14)
       * [Centos / RHEL 6.8](#centos--rhel-68)
-        * [PHP 7.1](#php-71---centos)
+        * [Only PHP 7.1](#php-71---centos)
 * [Resources](#resources)
 
 # Installation
