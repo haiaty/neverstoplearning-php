@@ -34,12 +34,15 @@ The advantage of running PHP-FPM on socket connections instead of TCP/IP is that
 
 Therefore, it is recommended to run the PHP-FPM on socket connections over TCP/IP when you are using the same server for your web server and PHP-FPM. If you are using the different servers for your web server and PHP-FPM then the socket connections for PHP-FPM will not work.
 
-### how to enable status page for fpm and nginx
+### how to enable status page for FPM and NGINX
 
 In php-fpm config
 
+```shell
 
 vi /etc/php-fpm.d/www.conf
+
+```
 Search for the status path directive and enable it
 
 pm.status_path = /status
