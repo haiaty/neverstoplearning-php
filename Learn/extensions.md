@@ -1,4 +1,5 @@
 
+Extensions can be loaded by adding an extension directive to the php.ini file.
 
 ### install php extensions on unix
 
