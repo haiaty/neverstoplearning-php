@@ -28,7 +28,18 @@ These features include:
 
 - php.ini-based config file.
 
+With PHP-FPM it’s possible to use different pools for different sites and allocate resources very accurately and even use different users and groups for every pool.
+
 PHP-FPM not only supports TCP/IP connections but also the socket based connections.
+
+Best way to use PHP-FPM process manager is use dynamic process management, so PHP-FPM processes are started only when needed. This is almost same style setup than Nginx worker_processes and worker_connections setup. So very high values does not mean necessarily anything good. Every process eat memory and of course if site have very high traffic and server lot’s of memory then higher values are right choise, but servers, like VPS (Virtual Private Servers) memory is normally limited to 256 Mb, 512 Mb, 1024 Mb. This low RAM is enough to handle even very high traffic (even dozens of requests per second), if it’s used wisely.
+
+It’s good to test how many PHP-FPM processes a server could handle easily, first start Nginx and PHP-FPM and load some PHP pages, preferably all of the heaviest pages. Then check memory usage per PHP-FPM process example with Linux top or htop command. Let’s assume that the server has 512 Mb memory and 220 Mb could be used for PHP-FPM, every process use 24 Mb RAM (some huge content management system with plugins can easily use 20-40 Mb / per PHP page request or even more). Then simply calculate the server max_children value:
+220 / 24 = 9.17
+
+So good pm.max_children value is 9. This is based just quick average and later this could be something else when you see longer time memory usage / per process. After quick testing it’s much easier to setup pm.start_servers value, pm.min_spare_servers value and pm.max_spare_servers value.
+
+Max request per process is unlimited by default, but it’s good to set some low value, like 200 and avoid some memory issues. 
 
 The advantage of running PHP-FPM on socket connections instead of TCP/IP is that the socket connections are much more faster than TCP/IP connections (around 10-15%) because it saves the passing the data over the different layers of TCP/IP stack.
 
@@ -122,3 +133,4 @@ If the process is in Idle state, then informations are related to the last reque
 - [FastCGI Process Manager (FPM) ](http://php.net/manual/en/install.fpm.php)
 - [Get High Performance PHP-FPM with socket connections](http://voidweb.com/2010/10/get-high-performance-php-fpm-socket-connections/)
 - [Enable PHP-FPM Status ](https://easyengine.io/tutorials/php/fpm-status-page/)
+- [Nginx and PHP-FPM Configuration and Optimizing Tips and Tricks](https://www.if-not-true-then-false.com/2011/nginx-and-php-fpm-configuration-and-optimizing-tips-and-tricks/)
