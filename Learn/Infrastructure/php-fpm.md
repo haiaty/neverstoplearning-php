@@ -43,6 +43,8 @@ So good pm.max_children value is 9. This is based just quick average and later t
 
 Max request per process is unlimited by default, but it’s good to set some low value, like 200 and avoid some memory issues. 
 
+You can have any number of “pools” you like. They will each maintain their own set of processes and live in their own little sandbox. For most setups there’s no reason to have more than one (especially if you are the only one hosting sites on the server), so we’ll configure a single global pool called “www” — just like the default.
+
 The advantage of running PHP-FPM on socket connections instead of TCP/IP is that the socket connections are much more faster than TCP/IP connections (around 10-15%) because it saves the passing the data over the different layers of TCP/IP stack.
 
 Therefore, it is recommended to run the PHP-FPM on socket connections over TCP/IP when you are using the same server for your web server and PHP-FPM. If you are using the different servers for your web server and PHP-FPM then the socket connections for PHP-FPM will not work.
