@@ -39,6 +39,8 @@ It’s good to test how many PHP-FPM processes a server could handle easily, fir
 
 So good pm.max_children value is 9. This is based just quick average and later this could be something else when you see longer time memory usage / per process. After quick testing it’s much easier to setup pm.start_servers value, pm.min_spare_servers value and pm.max_spare_servers value.
 
+**max_children** is the amount of spawned processes the fpm is allowed to spawn to handle concurrent connections, If you are having a lot of concurrent connections then you better increase that number, if the number is reached fpm won't spawn another child and wait for one to free to handle the waiting request.
+
 Max request per process is unlimited by default, but it’s good to set some low value, like 200 and avoid some memory issues. 
 
 The advantage of running PHP-FPM on socket connections instead of TCP/IP is that the socket connections are much more faster than TCP/IP connections (around 10-15%) because it saves the passing the data over the different layers of TCP/IP stack.
