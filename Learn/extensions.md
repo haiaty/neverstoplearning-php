@@ -1,7 +1,31 @@
 
 Extensions can be loaded by adding an extension directive to the php.ini file.
 
-### install php extensions on unix
+
+
+### installing php extensions compiling it from source
+
+```shell
+
+#Browse to the directory you'd like the "temp" files to be stored at, in this case /root:
+cd /root
+
+#Next we'll download and extract the actual PECL extension tar.gz file (be sure to replace the PECL extension with the one you #want):
+wget http://pecl.php.net/get/uploadprogress-1.0.3.1.tgz && tar zxvf uploadprogress-1.0.3.1.tgz
+
+#Next cd into the new directory and prepare for compiling:
+ phpize && ./configure -with-php-config=/usr/bin/php-config
+
+#Once finished we'll compile and install it:
+make && make install
+
+#The module will be installed in the modules/extensions folder
+#that you can find running
+cat /path/to/php.ini | grep extension_dir
+
+```
+
+### installing php extensions on unix using the OS package manager
 
 To install an extension you can use the package manager of the os that you are using.
 
