@@ -32,6 +32,23 @@ Note that unless told otherwise, 'make install' will also install PEAR, various 
 
 ##### Ubuntu 14.04 - 16.10
 
+
+##### note on multiple installations
+
+If you have multiple php installations, you will find that config files are all in /etc/php/<version> (for example /etc/php/5.6 and /etc/php/7.0)
+
+To check which one is used or change it 
+
+```shell
+
+php -v
+
+#or 
+
+ls -l  /etc/alternatives/ | grep php
+
+```
+
 ###### PHP 7.1 - ubuntu
 
 PHP 7.1 can be installed using Ondřej Surý's PPA:
