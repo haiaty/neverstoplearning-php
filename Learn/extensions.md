@@ -6,10 +6,59 @@ Extensions can be loaded by adding an extension directive to the php.ini file.
 
 
 
-### installing php extensions 
+# installing php extensions 
 
 
-##### from PHP source
+## Ubuntu 
+
+### Using PEAR/PECL
+
+First install pear 
+
+```shell
+
+sudo apt-get install php-pear
+
+```
+
+Then install php-devel tools to compile it
+
+```shell
+
+sudo apt-get install phpx.x-dev
+
+```
+
+The install the extension that you wants
+
+```shell
+
+#example of installing the zip extensions
+sudo pecl install zip 
+
+#it will generate the *.so file in '/usr/lib/php/<current_date>/zip.so'
+
+#then you shoudld copy the generated *.so file into the extension dir
+#that you can find running
+cat /path/to/php.ini | grep extension_dir
+
+cp /path/to/.so/ /path/to/extension_dir/
+
+#then you should enable the extension and add the configurations for it in the .ini file
+# or changingng the php.ini file and adding
+extension = module.so
+add other extension configs
+
+#or adding a .ini file in the folder mods-available and creating a soft link to cli and fpm
+#see this EXAMPLE:
+
+sudo ln -s /etc/php/7.1/mods-available/mcrypt.ini /etc/php/7.1/cli/conf.d/20-mcrypt.ini
+sudo ln -s /etc/php/7.1/mods-available/mcrypt.ini /etc/php/7.1/fpm/conf.d/20-mcrypt.ini
+
+```
+
+
+### from PHP source
 
  When installing a bundled extension, you’ll need the source code of PHP on your machine.
  
