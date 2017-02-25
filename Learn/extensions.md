@@ -116,6 +116,17 @@ sudo ln -s /etc/php/7.1/mods-available/mcrypt.ini /etc/php/7.1/fpm/conf.d/20-mcr
 
 ```
 
+## Removing Extensions
+
+to remove extensions, there’s **no need to delete any actual files** unless you’re really low on space. You can do it in three ways:
+
+* Run php5dismod if you have the tool available. It’s the opposite of the php5enmod tool. The .so files will stay in place, and the ini files will remain in mods-available, they just won’t load because their symlinks will be removed from the fpm and cli conf.d folders.
+
+* Remove the symlinks manually. E.g. sudo rm /etc/php5/cli/conf.d/mongo.ini
+
+* If you enabled the extensions by putting them directly into the php.ini files, remove those lines from the php.ini files, or better yet, comment them so that they remain accessible for further use should you ever change your mind.
+
+
 # Resources
 
 [How to Install PHP Extensions from Source](https://www.sitepoint.com/install-php-extensions-source/)
