@@ -36,12 +36,12 @@ The install the extension that you wants
 #example of installing the zip extensions
 sudo pecl install zip 
 
-#it will generate the *.so file in '/usr/lib/php/<current_date>/zip.so'
+#it will generate the *.so file in '/usr/lib/php/<current_date>/zip.so
 
-#then you shoudld copy the generated *.so file into the extension dir
-#that you can find running
+#find the extension_dir running
 cat /path/to/php.ini | grep extension_dir
 
+#copy the generated *.so file into the extension dir
 cp /path/to/.so/ /path/to/extension_dir/
 
 #then you should enable the extension and add the configurations for it in the .ini file
