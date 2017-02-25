@@ -21,6 +21,8 @@ PEAR coding standards require packages to be renamed when they break backwards c
 
 A PEAR Channel is a web site that distributes package archives for remote installation by users of Pyrus or the PEAR Installer. 
 
+The default channel is set by the default_channel configuration variable, and is set to one of pear.php.net (pear command), pecl.php.net (pecl command), or pear2.php.net (Pyrus) unless explicitly changed by a call to the config-set (pear/pecl command) or set (pyrus) command. 
+
 #### PEAR package manager
 
 The PEAR package manager provides a standardized way to install, uninstall, or upgrade with new PEAR packages or PECL extensions. Before installing a package it can also be instructed to take care of package dependencies so all the extra needed packages are installed too.
