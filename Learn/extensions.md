@@ -1,9 +1,58 @@
 
+
+There are two types of extensions you can install: bundled with PHP but not installed by default, and third party extensions.
+
 Extensions can be loaded by adding an extension directive to the php.ini file.
 
 
 
-### installing php extensions compiling it from source
+### installing php extensions 
+
+
+##### from PHP source
+
+ When installing a bundled extension, you’ll need the source code of PHP on your machine.
+ 
+
+```shell
+
+#example of getting the php source, extracting the archive and going into that folder
+
+wget http://be2.php.net/distributions/php-5.5.12.tar.bz2
+tar xvjf php-5.5.12.tar.bz2
+cd php-5.5.12
+ 
+ ```
+To see the sources of all bundled extensions, go into the ext folder inside the unarchived PHP source code folder.
+Then go the folder of the extension and runs:
+
+```shell
+
+#To install extensions from source, we need the PHP dev tools installed on our machine, as well as a compiler that can produce #the extension file.
+
+sudo apt-get install phpx-dev phpx-gcc libpcre3-dev
+
+#example with the intl extension
+cd intl
+
+
+#phpize prepares the extension’s folder for compliation. It allows you to do the subsequent commands by creating a configure #file, and basically making the extension’s folder “think” it’s PHP itself. The procedure after phpize is, in fact, identical #to what you would do when installing PHP from source – only in this case, just a fragment of PHP is compiled and prepared #for use with the already compiled and installed PHP.
+phpize
+
+#./configure --enable-intl configures the environment for compilation. It prepares everything the compiler will need to craft #the intl.so file which we’ll be using. The enable-intl flag is necessary even though we’re in the intl folder because the #folder, effectively, thinks it is PHP, and we need to help it live that illusion. This command tells it: “Ok, you’re PHP’s #source code. Now compile and install with the intl extension.”, when in fact, it’s the only part that can be installed from #this folder.
+./configure --enable-intl
+
+#make will compile the sources into intl.so, placing the file into the very folder you’re currently in, under the modules #subfolder.
+make
+
+#sudo make install will move this file into the current PHP installation’s extensions folder.
+sudo make install
+
+#enable the extension in php.ini
+
+```
+
+##### third parties extensions (like mongo)
 
 ```shell
 
