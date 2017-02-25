@@ -101,7 +101,7 @@ sudo make install
 
 ```
 
-##### third parties extensions (like mongo)
+### third parties extensions (like mongo)
 
 ```shell
 
@@ -140,12 +140,7 @@ sudo ln -s /etc/php/7.1/mods-available/mcrypt.ini /etc/php/7.1/fpm/conf.d/20-mcr
 
 ```
 
-### installing php extensions on unix using the OS package manager
-
-To install an extension you can use the package manager of the os that you are using.
-
-
-### Mbcrypt
+### using aptitude package manager
 
 
 For example, to install the mcrypt extension for PHP 7.1 on ubuntu 16.04:
@@ -165,7 +160,7 @@ sudo ln -s /etc/php/7.1/mods-available/mcrypt.ini /etc/php/7.1/fpm/conf.d/20-mcr
 
 ```
 
-## Removing Extensions
+# Removing Extensions
 
 to remove extensions, there’s **no need to delete any actual files** unless you’re really low on space. You can do it in three ways:
 
