@@ -7,6 +7,10 @@ Extensions can be loaded by adding an extension directive to the php.ini file.
 
 ```shell
 
+#To install extensions from source, we need the PHP dev tools installed on our machine, as well as a compiler that can produce #the extension file.
+
+sudo apt-get install phpx-dev php5-gcc libpcre3-dev
+
 #Browse to the directory you'd like the "temp" files to be stored at, in this case /root:
 cd /root
 
@@ -62,3 +66,7 @@ sudo ln -s /etc/php/7.1/mods-available/mcrypt.ini /etc/php/7.1/cli/conf.d/20-mcr
 sudo ln -s /etc/php/7.1/mods-available/mcrypt.ini /etc/php/7.1/fpm/conf.d/20-mcrypt.ini
 
 ```
+
+# Resources
+
+[How to Install PHP Extensions from Source](https://www.sitepoint.com/install-php-extensions-source/)
