@@ -6,7 +6,8 @@
         * [Only PHP 7.1](#php-71---ubuntu)
         * [Install and configure Apache 2 and PHP-FPM on Ubuntu 14](#install-and-configure-apache-2-and-php-fpm-on-ubuntu-14)
       * [Centos / RHEL 6.8](#centos--rhel-68)
-        * [Only PHP 7.1](#php-71---centos)
+        * [PHP 7.1](#php-71---centos)
+        * [PHP 5.3](#php-53---centos)
 * [Resources](#resources)
 
 # Installation
@@ -113,6 +114,23 @@ and install php 7.1
 
 ```
 yum install php71
+
+```
+
+##### PHP 5.3 - centos
+
+```shell
+
+yum update
+
+#Note: if you don't find nothing you should add the repository
+yum search php
+
+#this will create:
+# /etc/php.d  where there will be ini files for extensions configurations
+# /etc/php.ini the php ini configuration file
+
+yum install php
 
 ```
 
