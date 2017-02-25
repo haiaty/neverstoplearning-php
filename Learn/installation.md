@@ -127,6 +127,8 @@ yum update
 yum search php
 
 #this will create:
+# /usr/bin/php - excecutable
+# /usr/bin/php-cgi
 # /etc/php.d  where there will be ini files for extensions configurations
 # /etc/php.ini the php ini configuration file
 
