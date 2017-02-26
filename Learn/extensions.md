@@ -1,5 +1,14 @@
 
 
+
+# PHP extensions
+
+PHP extensions are compiled libraries which enable specific functions to be used in your PHP code.
+
+For example, you want to interact with MySQL using PHP. You can implement your own methods to connect to MySQL server, make queries using TCP/IP protocol. However thats not a trivial task. Plus, that is not only your own requirement, but other developers also need to do similar thing.
+
+Therefore, someone already wrote a `plugin` and made it available. Such plugins can be static compiled (so 'bundled' with php package) or can be dynamically enabled by installing later on (on Windows in form of a DLL file, on other systems .so file for example).
+
 There are two types of extensions you can install: bundled with PHP but not installed by default, and third party extensions.
 
 Extensions can be loaded by adding an extension directive to the php.ini file.
