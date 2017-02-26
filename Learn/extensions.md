@@ -180,6 +180,11 @@ to remove extensions, there’s **no need to delete any actual files** unless yo
 * If you enabled the extensions by putting them directly into the php.ini files, remove those lines from the php.ini files, or better yet, comment them so that they remain accessible for further use should you ever change your mind.
 
 
+# wrtiting PHP extensions
+
+I would recommend to read this articles and the comments: [PHP Extensions – How and Why?](http://abhinavsingh.com/php-extensions-how-and-why/)
+
 # Resources
 
 [How to Install PHP Extensions from Source](https://www.sitepoint.com/install-php-extensions-source/)
+[PHP Extensions – How and Why?](http://abhinavsingh.com/php-extensions-how-and-why/)
