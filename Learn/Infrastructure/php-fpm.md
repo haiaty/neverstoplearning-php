@@ -130,6 +130,16 @@ Below is meaning of different values
 
 If the process is in Idle state, then informations are related to the last request the process has served. Otherwise informations are related to the current request being served.
 
+
+## Handling errors
+
+### [pool www] child 84583 exited on signal 11 (SIGSEGV)
+
+The first possible solution has to do with session files. If somehow the directory where they ought to be stored (session.save_path = "/var/lib/php/sessions", by default) is not writable, then php_fpm will segfault (note: 'not writable' might mean a lot of possible issues, from wrong permissions/ownership, wrong user/group running php_fpm, or, more obscurely, hitting inode limits on the filesystem where the save_path directory is mounted...). This is usually easy to fix — just check and re-check if the directory has all the permissions for the correct user; if it's full of session files, it's possible that the PHP garbage collector is not running; you can delete everything and see if it helps, or move the directory to a different mount point, etc. 
+
+The second possible solution is even more cryptical and obscure, and is tied to bad/buggy extensions. The original poster mentions that he uses apc and memcache. Trying to run without either of those extensions is a possibility (in my own case, it was the extension installed by New Relic that caused the problem). What usually happens in these cases is that those extensions sometimes hit some kind of limit (or have a bug which does not manifest itself all the time, and has eluded the testers), they segfault and bring the php-fpm process down with them — leaving no traces on logs, no core files around, nothing but the annoying 'child XXX exited on signal 11', making it very hard to debug, especially because it does not happen always.  To debug you shold use dbg.
+
+
 ---
 
 # Resources
