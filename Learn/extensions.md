@@ -151,6 +151,47 @@ sudo ln -s /etc/php/7.1/mods-available/mcrypt.ini /etc/php/7.1/fpm/conf.d/20-mcr
 
 ```
 
+### Compiling PECL extensions statically into PHP
+
+you'll need to place the extension source under the /your/phpsrcdir/ext/ directory and tell the PHP build system to regenerate its configure script.
+
+
+```shell
+
+#move to the php src dir
+cd /your/phpsrcdir/ext
+
+pecl download extname
+
+gzip -d < extname.tgz | tar -xvf -
+
+#This will result in the following directory: /your/phpsrcdir/ext/extname
+mv extname-x.x.x extname 
+
+#then force PHP to rebuild the configure script
+
+rm configure
+
+./buildconf --force
+
+./configure --help
+
+#Whether --enable-extname or --with-extname is used depends on the extension. Typically an extension that does not require external #libraries uses --enable
+./configure --with-extname --enable-someotherext --with-foobar
+
+#then  build PHP as normal
+
+make
+
+make install
+
+#to be sure
+
+./configure --help | grep extname
+
+```
+ Note: Some extensions cannot be statically linked (e.g., xdebug).
+
 ### using aptitude package manager
 
 
