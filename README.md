@@ -5,6 +5,8 @@ Knowledge aggregation and a collection of examples and resources in order to lea
 * [About](Learn/about.md)
 * [How to run] (Learn/how-to-run.md)
 * [Installation] (Learn/installation.md)
+* [Internals] (Learn/internals.md)
+* [Extensions] (Learn/extensions.md)
 * [Language](Learn/Language)
  * [Types](Learn/Language/Types)
    * [string](Learn/Language/Types/string.md)
@@ -20,6 +22,9 @@ Knowledge aggregation and a collection of examples and resources in order to lea
 * [Libraries](Learn/Libraries)
   * [Guzzle](Learn/Libraries/guzzle.md)
 * [Tools](Learn/Tools)
+  * [PEAR] (Learn/pear.md)
+  * [PECL] (Learn/pecl.md)
   * [Composer](Learn/Tools/composer.md)
 * [Utils](Learn/utils.md)
+
 
