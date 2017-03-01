@@ -5,6 +5,7 @@ Knowledge aggregation and a collection of examples and resources in order to lea
 * [About](Learn/about.md)
 * [How to run] (Learn/how-to-run.md)
 * [Installation] (Learn/installation.md)
+* [configuration] (Learn/configuration.md)
 * [Internals] (Learn/internals.md)
 * [Extensions] (Learn/extensions.md)
 * [Language](Learn/Language)
