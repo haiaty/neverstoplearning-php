@@ -110,13 +110,15 @@ sudo make install
 
 ```
 
-### third parties extensions (like mongo)
+### Compiling shared PECL extensions with phpize
+
+If you need to build an extension, you can use the lower-level build tools to perform the build manually.
 
 ```shell
 
 #To install extensions from source, we need the PHP dev tools installed on our machine, as well as a compiler that can produce #the extension file.
 
-sudo apt-get install phpx-dev php5-gcc libpcre3-dev
+sudo apt-get install php-devel gcc
 
 #Browse to the directory you'd like the "temp" files to be stored at, in this case /root:
 cd /root
