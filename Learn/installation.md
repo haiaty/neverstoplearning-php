@@ -140,9 +140,17 @@ yum install php71
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
 rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
 
-yum search php
+#find packages
+yum search php71
 
-yum install php71w
+# install for CLI usage
+yum install php71w-cli
+
+# install FPM 
+yum install php71w-fpm
+
+# install module for Apache
+yum install mod_php71w
 
 ```
 
