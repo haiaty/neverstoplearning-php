@@ -1,15 +1,16 @@
 
 
-#SAPIs – different runtime environments of PHP
+
 
 # What is an SAPI?
 
-SAPI stands for "Server Application Programming Interface". It is the mechanism that controls the interaction between the "outside world" and the PHP/Zend engine .
+SAPI stands for "Server Application Programming Interface". **It is the mechanism that controls the interaction between the "outside world" and the PHP/Zend engine** .
 
 it is the **direct module interface to web servers** such as the Apache HTTP Server, Microsoft IIS, and Oracle iPlanet Web Server. Microsoft uses the term Internet Server Application Programming Interface (ISAPI), and the defunct Netscape web server used the term Netscape Server Application Programming Interface (NSAPI) for the same purpose.In other words, SAPI is an application programming interface (API) provided by the web server to help other developers in extending the web server capabilities.
 
 If you want to know the type of SAPI that PHP is using you can use the [php_sapi_name](http://php.net/manual/en/function.php-sapi-name.php) function. An alternative approach is to use the the PHP constant PHP_SAPI since it has the same value as php_sapi_name().
 
+#SAPIs – different runtime environments of PHP
 
 ## mod_php NTS
 
@@ -41,4 +42,4 @@ these SAPIs are not recommended for use, but are available where needed. They bo
 
 # Resources
 
-* 
+
