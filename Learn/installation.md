@@ -111,7 +111,7 @@ sudo service apache2 restart && sudo service php5-fpm restart
 First, you'll want to ensure that the EPEL repository is configured (and enable the optional channel for RHEL too)
 
 
-```
+```shell
 # For centOS 7
 wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 wget http://rpms.remirepo.net/enterprise/remi-release-7.rpm
@@ -123,7 +123,7 @@ subscription-manager repos --enable=rhel-7-server-optional-rpms
 
 Next we enable the remi-php71 repository:
 
-```
+```shell
 yum install yum-utils
 yum-config-manager --enable remi-php71
 
@@ -131,13 +131,13 @@ yum-config-manager --enable remi-php71
 
 and install php 7.1
 
-```
+```shell
 yum install php71
 ```
 
 ##### For centOS 6.5
 
-```
+```shell
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
 rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
 
