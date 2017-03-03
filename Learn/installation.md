@@ -1,11 +1,10 @@
 
 
 * [knowledge aggregation](#installation)
-  * On unix
-      * [Ubuntu 14 - 16](#ubuntu-1404---1610)
+      * [Installing on Ubuntu 14 - 16](#installing-on-ubuntu-1404---1610)
         * [Only PHP 7.1](#php-71---ubuntu)
         * [Install and configure Apache 2 and PHP-FPM on Ubuntu 14](#install-and-configure-apache-2-and-php-fpm-on-ubuntu-14)
-      * [Centos / RHEL 6.8](#centos--rhel-68)
+      * [Installing on Centos / RHEL](#installing-on-centos--rhel)
         * [PHP 7.1](#php-71---centos)
         * [PHP 5.3](#php-53---centos)
 * [Resources](#resources)
@@ -30,10 +29,10 @@ When PHP is configured, you are ready to build the module and/or executables. Th
 Note that unless told otherwise, 'make install' will also install PEAR, various PHP tools such as phpize, install the PHP CLI, and more.
 
 
-##### Ubuntu 14.04 - 16.10
+# Installing on Ubuntu 14.04 - 16.10
 
 
-##### note on multiple installations
+## note on multiple installations
 
 If you have multiple php installations, you will find that config files are all in /etc/php/<version> (for example /etc/php/5.6 and /etc/php/7.0)
 
@@ -49,7 +48,7 @@ ls -l  /etc/alternatives/ | grep php
 
 ```
 
-###### PHP 7.1 - ubuntu
+## PHP 7.1 - ubuntu
 
 PHP 7.1 can be installed using Ondřej Surý's PPA:
 
@@ -67,7 +66,7 @@ sudo apt-get install php7.1-fpm
 
 ```
 
-### Install and configure Apache 2 and PHP-FPM on Ubuntu 14
+## Install and configure Apache 2 and PHP-FPM on Ubuntu 14
 
 You can install PHP-FPM and Apache on Ubuntu 14.04 by running these command in your terminal:
 
@@ -104,7 +103,7 @@ sudo service apache2 restart && sudo service php5-fpm restart
 
 ---
 
-# Installing on CentOS / RHEL 6.8
+# Installing on CentOS / RHEL
 
 ## PHP 7.1 - centos
 
