@@ -104,15 +104,14 @@ sudo service apache2 restart && sudo service php5-fpm restart
 
 ---
 
-##### CentOS / RHEL 6.8
+# Installing on CentOS / RHEL 6.8
 
-###### PHP 7.1 - centos
+## PHP 7.1 - centos
 
 First, you'll want to ensure that the EPEL repository is configured (and enable the optional channel for RHEL too)
 
-
+### For centOS 7
 ```shell
-# For centOS 7
 wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 wget http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 rpm -Uvh remi-release-7.rpm epel-release-latest-7.noarch.rpm
@@ -135,7 +134,7 @@ and install php 7.1
 yum install php71
 ```
 
-##### For centOS 6.5
+### For centOS 6.5
 
 ```shell
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
@@ -148,9 +147,7 @@ yum install php71w
 ```
 
 
-
-
-##### PHP 5.3 - centos
+## PHP 5.3 - centos
 
 ```shell
 
@@ -166,6 +163,22 @@ yum search php
 # /etc/php.ini the php ini configuration file
 
 yum install php
+
+```
+
+# Uninstalling on centoOS
+
+```shell
+
+#first find the installed packages
+rpm -qa | grep php
+
+yum remove <packagename>
+
+#example
+yum remove php-common
+
+
 
 ```
 
