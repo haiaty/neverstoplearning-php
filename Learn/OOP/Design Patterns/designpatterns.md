@@ -1,5 +1,5 @@
 
-List of link of examples of design patterns in PHP.
+List of examples of design patterns in PHP.
 
 # Creational
   * [Abstract factory](https://github.com/PavelLoparev/design-patterns/tree/master/src/AbstractFactory)
