@@ -24,3 +24,4 @@ List of examples of design patterns in PHP.
   # Resources
   
   * [Design patterns in PHP](https://github.com/PavelLoparev/design-patterns)
+  * [Design Patterns for Humans in PHP](https://github.com/kamranahmedse/design-patterns-for-humans)
