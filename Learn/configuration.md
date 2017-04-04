@@ -45,6 +45,25 @@ $ PHP_INI_SCAN_DIR=/usr/local/etc/php.d: php
   /etc/php.d/*.ini as configuration files.
 ```
 
+## User.ini files
+
+Since PHP 5.3.0, PHP includes support for configuration INI files on a per-directory basis. These files are processed only by the CGI/FastCGI SAPI.
+
+In addition to the main php.ini file, PHP scans for INI files in each directory, starting with the directory of the requested PHP file, and working its way up to the current document root (as set in $_SERVER['DOCUMENT_ROOT']). In case the PHP file is outside the document root, only its directory is scanned.
+
+Only INI settings with the modes PHP_INI_PERDIR and PHP_INI_USER will be recognized in .user.ini-style INI files.
+
+## Where a configuration setting may be set
+
+These modes determine when and where a PHP directive may or may not be set. For example, some settings may be set within a PHP script using ini_set(), whereas others may require php.ini or httpd.conf.
+
+
+* PHP_INI_USER -	Entry can be set in user scripts (like with ini_set()) or in the Windows registry. Since PHP 5.3, entry can be set in .user.ini
+
+* PHP_INI_PERDIR	- Entry can be set in php.ini, .htaccess, httpd.conf or .user.ini (since PHP 5.3)
+* PHP_INI_SYSTEM	- Entry can be set in php.ini or httpd.conf
+* PHP_INI_ALL	- Entry can be set anywhere
+
 # Tips
 
 * environment variables can be used in php.ini
