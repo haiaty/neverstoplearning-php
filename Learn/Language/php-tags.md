@@ -4,6 +4,8 @@
 
 When PHP parses a file, it looks for opening and closing tags, which are <?php and ?> which tell PHP to start and stop interpreting the code between them. 
 
+Wwhen the PHP interpreter hits the ?> closing tags, it simply starts outputting whatever it finds until it hits another opening tag unless in the middle of a conditional statement in which case the interpreter will determine the outcome of the conditional before making a decision of what to skip over. 
+
 Everything outside of a pair of opening and closing tags is ignored by the PHP parser.
 
 PHP also allows for short open tag <? (which is discouraged).
