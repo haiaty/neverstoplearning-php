@@ -13,6 +13,15 @@ There are two types of extensions you can install: bundled with PHP but not inst
 
 Extensions can be loaded by adding an extension directive to the php.ini file.
 
+##### Defaul folder to find php extensions
+
+CentOS
+
+```shell
+
+/usr/lib64/php/modules/
+
+```
 
 
 # installing php extensions 
