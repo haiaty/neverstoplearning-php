@@ -6,7 +6,28 @@
 
 FPM (FastCGI Process Manager) is an alternative PHP FastCGI implementation with some additional features (mostly) useful for heavy-loaded sites.
 
-These features include:
+
+### How it works
+
+-> PHP-FPM organizes it's processes in so-called pools
+
+-> Each pool is represented by a master process that is listening on a particular socket (network or unix domain socket). 
+
+-> The master process queues incoming requests, spawns child processes in background, distributes the workload to its child processes and writes the responses back to the socket/stream as soon as the child processes finished and handed over their results.
+
+--> PHP-FPM knows three different types for the process management (config value for pm):
+
+**dynamic** (as shown above)
+You can configure how many child processes are always alive to immediately handle requests without an upstart time. This should be used when performance and quick responses are the focus of the application. That's why it is commonly used in combination with a webserver like nginx.
+
+**ondemand** (see example below)
+The configured amount of child processes will be started (only) as soon as the master process gets requests. After a certain amount of time these child processes will die and only the master process stays alive.
+I personally prefer this mode for the background workers I described in my blog post, because the quick response is not that important in this use-case. Depending on the workload you don't want to have a lot of idle processes consuming resources for nothing.
+
+**static**
+You configure a fixed number of child processes. Until now I did't see a use-case for this.
+
+### Features
 
 - advanced process management with graceful stop/start;
 
@@ -28,11 +49,9 @@ These features include:
 
 - php.ini-based config file.
 
-With PHP-FPM it’s possible to use different pools for different sites and allocate resources very accurately and even use different users and groups for every pool.
 
-PHP-FPM not only supports TCP/IP connections but also the socket based connections.
 
-Best way to use PHP-FPM process manager is use dynamic process management, so PHP-FPM processes are started only when needed. This is almost same style setup than Nginx worker_processes and worker_connections setup. So very high values does not mean necessarily anything good. Every process eat memory and of course if site have very high traffic and server lot’s of memory then higher values are right choise, but servers, like VPS (Virtual Private Servers) memory is normally limited to 256 Mb, 512 Mb, 1024 Mb. This low RAM is enough to handle even very high traffic (even dozens of requests per second), if it’s used wisely.
+### check how many request server can handle
 
 It’s good to test how many PHP-FPM processes a server could handle easily, first start Nginx and PHP-FPM and load some PHP pages, preferably all of the heaviest pages. Then check memory usage per PHP-FPM process example with Linux top or htop command. Let’s assume that the server has 512 Mb memory and 220 Mb could be used for PHP-FPM, every process use 24 Mb RAM (some huge content management system with plugins can easily use 20-40 Mb / per PHP page request or even more). Then simply calculate the server max_children value:
 220 / 24 = 9.17
@@ -43,13 +62,21 @@ So good pm.max_children value is 9. This is based just quick average and later t
 
 Max request per process is unlimited by default, but it’s good to set some low value, like 200 and avoid some memory issues. 
 
-You can have any number of “pools” you like. They will each maintain their own set of processes and live in their own little sandbox. For most setups there’s no reason to have more than one (especially if you are the only one hosting sites on the server), so we’ll configure a single global pool called “www” — just like the default.
 
-The advantage of running PHP-FPM on socket connections instead of TCP/IP is that the socket connections are much more faster than TCP/IP connections (around 10-15%) because it saves the passing the data over the different layers of TCP/IP stack.
+### Other informations
+
+--> You can have any number of “pools” you like. They will each maintain their own set of processes and live in their own little sandbox. For most setups there’s no reason to have more than one (especially if you are the only one hosting sites on the server), so we’ll configure a single global pool called “www” — just like the default. With PHP-FPM it’s possible to use different pools for different sites and allocate resources very accurately and even use different users and groups for every pool.
+
+--> The advantage of running PHP-FPM on socket connections instead of TCP/IP is that the socket connections are much more faster than TCP/IP connections (around 10-15%) because it saves the passing the data over the different layers of TCP/IP stack.
 
 Therefore, it is recommended to run the PHP-FPM on socket connections over TCP/IP when you are using the same server for your web server and PHP-FPM. If you are using the different servers for your web server and PHP-FPM then the socket connections for PHP-FPM will not work. However if you use PHP-FPM on socket connections maybe you could get **errors of the type "Resource temporary not available"** in the NGINX logs (or you webserver logs). If you are getting this error you should change to TCP/IP.
 
-PHP-FPM is FAST - but be wary of using it while your code base is stored on NFS - under average load your NFS server will feel some serious strain. 
+--> PHP-FPM is FAST - but be wary of using it while your code base is stored on NFS - under average load your NFS server will feel some serious strain. 
+
+### tips
+
+Best way to use PHP-FPM process manager is use dynamic process management, so PHP-FPM processes are started only when needed. This is almost same style setup than Nginx worker_processes and worker_connections setup. So very high values does not mean necessarily anything good. Every process eat memory and of course if site have very high traffic and server lot’s of memory then higher values are right choise, but servers, like VPS (Virtual Private Servers) memory is normally limited to 256 Mb, 512 Mb, 1024 Mb. This low RAM is enough to handle even very high traffic (even dozens of requests per second), if it’s used wisely.
+
 
 ### how to enable status page for FPM and NGINX
 
@@ -148,3 +175,4 @@ The second possible solution is even more cryptical and obscure, and is tied to 
 - [Get High Performance PHP-FPM with socket connections](http://voidweb.com/2010/10/get-high-performance-php-fpm-socket-connections/)
 - [Enable PHP-FPM Status ](https://easyengine.io/tutorials/php/fpm-status-page/)
 - [Nginx and PHP-FPM Configuration and Optimizing Tips and Tricks](https://www.if-not-true-then-false.com/2011/nginx-and-php-fpm-configuration-and-optimizing-tips-and-tricks/)
+- [Q/A: Parallelism, Experimental async PHP - VOL. 2](https://hollo.me/php/experimental-async-php-volume-2-parallelism.html)
