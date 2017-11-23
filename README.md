@@ -7,6 +7,7 @@ Knowledge aggregation and a collection of examples and resources in order to lea
 * [Installation](Learn/installation.md)
 * [configuration](Learn/configuration.md)
 * [Internals](Learn/internals.md)
+  * [Opcode](Learn/opcode.md)
 * [Extensions](Learn/extensions.md)
 * [Language](Learn/Language)
   * [Variables](Learn/Language/variables.md)
@@ -14,8 +15,10 @@ Knowledge aggregation and a collection of examples and resources in order to lea
   * [Types](Learn/Language/Types)
      * [string](Learn/Language/Types/string.md)
    * [Anonymous functions / Closures](Learn/Language/anonymous-functions-closures.md)
+   * [Errors](Learn/errors.md)
 * [OOP](Learn/OOP/)
   * [Classes](Learn/OOP/classes.md)
+  * [Traits](Learn/OOP/traits.md)
   * [Design Patterns in PHP](https://github.com/haiaty/neverstoplearning-php/blob/master/Learn/OOP/Design%20Patterns/designpatterns.md)
 * [Infrastructure](Learn/Infrastructure)
   * [SAPI](Learn/Infrastructure/sapi.md)
@@ -30,5 +33,7 @@ Knowledge aggregation and a collection of examples and resources in order to lea
   * [PECL](Learn/pecl.md)
   * [Composer](Learn/Tools/composer.md)
 * [Utils](Learn/utils.md)
+* [PHP vs Others](Learn/php-vs/)
+  * [PHP vs Asp.NET](Learn/php-vs/php-vs-aspnet.md)
 
 
