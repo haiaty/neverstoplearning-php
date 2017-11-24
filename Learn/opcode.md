@@ -50,8 +50,6 @@ opcache.fast_shutdown=0
 
 Fast shutdown should give a faster mechanism for clearing memory. However, in my Benchmarks it was a bit slower. Maybe it can give some improvement to your app, but you should try it for yourself.
 
-
-
 test sync
 
 # Resources

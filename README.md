@@ -13,13 +13,13 @@ Knowledge aggregation and a collection of examples and resources in order to lea
   * [Variables](Learn/Language/variables.md)
   * [php tags](Learn/Language/php-tags.md)
   * [Types](Learn/Language/Types)
-     * [string](Learn/Language/Types/string.md)
-   * [Anonymous functions / Closures](Learn/Language/anonymous-functions-closures.md)
-   * [Errors](Learn/errors.md)
+    * [string](Learn/Language/Types/string.md)
+      * [Anonymous functions / Closures](Learn/Language/anonymous-functions-closures.md)
+      * [Errors](Learn/errors.md)
 * [OOP](Learn/OOP/)
   * [Classes](Learn/OOP/classes.md)
   * [Traits](Learn/OOP/traits.md)
-  * [Design Patterns in PHP](https://github.com/haiaty/neverstoplearning-php/blob/master/Learn/OOP/Design%20Patterns/designpatterns.md)
+  * [Design Patterns in PHP](https://github.com/haiaty/neverstoplearning-php/blob/master/Learn/OOP/Design Patterns/designpatterns.md)
 * [Infrastructure](Learn/Infrastructure)
   * [SAPI](Learn/Infrastructure/sapi.md)
   * [PHP FPM](Learn/Infrastructure/php-fpm.md)
@@ -35,5 +35,6 @@ Knowledge aggregation and a collection of examples and resources in order to lea
 * [Utils](Learn/utils.md)
 * [PHP vs Others](Learn/php-vs/)
   * [PHP vs Asp.NET](Learn/php-vs/php-vs-aspnet.md)
+
 
 
